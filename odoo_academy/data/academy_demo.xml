@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="course_demo_1" model="academy.course">
+            <field name="name">Python Básico</field>
+            <field name="description">Curso introductorio para aprender Python desde cero.</field>
+            <field name="level">baja</field>
+            <field name="base_price">100.0</field>
+            <field name="additional_fee">20.00</field>
+
+        </record>
+
+        <record id="course_demo_2" model="academy.course">
+            <field name="name">Odoo Intermedio</field>
+            <field name="description">Creación de módulos, vistas y lógica de negocio en Odoo.</field>
+            <field name="level">media</field>
+            <field name="base_price">120.0</field>
+            <field name="additional_fee">30.00</field>
+        </record>
+
+        <record id="course_demo_3" model="academy.course">
+            <field name="name">PostgreSQL para Odoo</field>
+            <field name="description">Consulta y administración de bases de datos PostgreSQL.</field>
+            <field name="level">media</field>
+            <field name="base_price">150.0</field>
+            <field name="additional_fee">25.00</field>
+        </record>
+
+        <record id="course_demo_4" model="academy.course">
+            <field name="name">Git y Control de Versiones</field>
+            <field name="description">Aprende Git desde lo básico hasta ramas y merge.</field>
+            <field name="level">baja</field>
+            <field name="base_price">90.0</field>
+            <field name="additional_fee">10.00</field>
+        </record>
+
+        <record id="course_demo_5" model="academy.course">
+            <field name="name">Odoo Avanzado</field>
+            <field name="description">Optimización, herencia avanzada, tests y despliegue de módulos Odoo.</field>
+            <field name="level">alta</field>
+            <field name="base_price">200.0</field>
+            <field name="additional_fee">35.00</field>
+        </record>
+
+        <record id="course_demo_6" model="academy.course">
+            <field name="name">Ejemplo</field>
+            <field name="description">REjemplo</field>
+            <field name="level">alta</field>
+            <field name="base_price">20</field>
+            <field name="additional_fee">35.00</field>
+        </record>
+    </data>
+</odoo>

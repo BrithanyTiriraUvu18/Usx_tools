@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <record id="menu_dashboard_invoice" model="import.dashboard">
+            <field name="name">Invoice / Bill</field>
+            <field name="state">account.move</field>
+        </record>
+</odoo>

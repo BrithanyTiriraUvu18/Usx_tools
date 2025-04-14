@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_order_form_inherit_academy">
+            <field name="name">sale.order.form.inherit.academy</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <!-- Campo de sesión relacionado -->
+                <!-- en position after, before, atributes, inside- -->
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="session_id"/>
+                </xpath>
+
+                <!--se eliminó 'attrs' ya que no es compatible en Odoo 17, pipi- -->
+                <!-- Ahora es siempre visible pero readonly -->
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="instructor_id" readonly="1"/>
+                </xpath>
+
+                <!-- Página de estudiantes: se eliminó 'attrs' por incompatibilidad con Odoo 17 -->
+                <!-- Se mantiene visible, mostrará vacía si no hay sesión -->
+                <xpath expr="//sheet//notebook" position="inside">
+                    <page string="Students">
+                        <field name="student_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="phone"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

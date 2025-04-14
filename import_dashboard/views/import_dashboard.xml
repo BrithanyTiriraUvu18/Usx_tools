@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_import_dashboard_kanban" model="ir.ui.view">
+        <field name="name">import.dashboard.kanban</field>
+        <field name="model">import.dashboard</field>
+        <field name="arch" type="xml">
+            <kanban create="0">
+                <field name="name" />
+                <field name="state" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_content">
+                            <div>
+                                <div t-if="record.state.raw_value =='account.move'">
+                                    <div class="oe_kanban_title">
+                                        <a style="font-size: 20px;">
+                                            <span class="o_label">Invoice / Bills</span>
+                                        </a>
+                                    </div>
+                                    <button
+                                        class="btn btn-sm btn-primary"
+                                        style="margin-top: 5%;"
+                                        name="%(import_account_move_action)d"
+                                        type="action"
+                                    >
+                                        <span class="o_label">Import</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="import_dashboard_action" model="ir.actions.act_window">
+        <field name="name">Import Dashboard</field>
+        <field name="res_model">import.dashboard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_id" ref="view_import_dashboard_kanban" />
+        <field name="usage">menu</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        id="menu_import_dashboard"
+        name="Import Dashboard"
+        action="import_dashboard_action"
+        web_icon="import_dashboard,static/description/icon.png"
+        sequence="20"
+    />
+
+</odoo>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_form_book" model="ir.ui.view">
+            <field name="name">library.book.form</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <form string="Libro">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" placeholder="Título del libro"/>
+                                <field name="author" placeholder="Nombre del autor"/>
+                                <field name="isbn" placeholder="ISBN"/>
+                                <field name="publication_date"/>
+                            </group>
+                            <group>
+                                <field name="pages"/>
+                                <field name="publisher" placeholder="Editorial"/>
+                                <field name="available"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_tree_book" model="ir.ui.view">
+            <field name="name">library.book.tree</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <tree string="Libros">
+                    <field name="name"/>
+                    <field name="author"/>
+                    <field name="isbn"/>
+                    <field name="publication_date"/>
+                    <field name="publisher"/>
+                    <field name="available"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_search_book" model="ir.ui.view">
+            <field name="name">library.book.search</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Libros">
+                    <field name="name"/>
+                    <field name="author"/>
+                    <field name="isbn"/>
+                    <field name="publisher"/>
+                    <filter string="Disponibles" name="available" domain="[('available', '=', True)]"/>
+                    <filter string="No Disponibles" name="unavailable" domain="[('available', '=', False)]"/>
+                    <group expand="0" string="Agrupar Por">
+                        <filter string="Autor" name="author" context="{'group_by': 'author'}"/>
+                        <filter string="Editorial" name="publisher" context="{'group_by': 'publisher'}"/>
+                        <filter string="Año de Publicación" name="year" context="{'group_by': 'publication_date:year'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_library_book" model="ir.actions.act_window">
+            <field name="name">Libros</field>
+            <field name="res_model">library.book</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu Items -->
+        <menuitem 
+            id="menu_biblioteca_root"
+            name="Biblioteca"
+            sequence="10"/>
+
+        <menuitem 
+            id="menu_biblioteca_main"
+            name="Biblioteca"
+            parent="menu_biblioteca_root"
+            sequence="10"/>
+
+        <menuitem 
+            id="menu_biblioteca_libros"
+            name="Libros"
+            parent="menu_biblioteca_main"
+            action="action_library_book"
+            sequence="10"/>
+
+    </data>
+</odoo>

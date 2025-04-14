@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="academy_sale_wizard_form_view" model="ir.ui.view">
+        <field name="name">academy.sale.wizard.form</field>
+        <field name="model">academy.sale.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Sale Order for Session">
+                <group>
+                    <field name="session_id"/>
+                    <field name="session_student_ids" invisible="1"/>
+                    <field name="student_ids" domain="[('id', 'in', session_student_ids)]"/>
+                </group>
+                <footer>
+                    <button name="create_sale_orders"
+                            type="object"
+                            string="Create"
+                            class="btn btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="launch_sale_wizard" model="ir.actions.act_window">
+        <field name="name">Create Sale Order</field>
+        <field name="binding_model_id" ref="odoo_academy.model_academy_session"/> <!-- remplaza 'module_name' por el nombre real de tu módulo -->
+        <field name="res_model">academy.sale.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Registros demo -->
+        <record id="book_demo_1" model="library.book">
+            <field name="name">Cien Años de Soledad</field>
+            <field name="author">Gabriel García Márquez</field>
+            <field name="isbn">1234567890</field>
+            <field name="publication_date">1967-06-05</field>
+            <field name="pages">417</field>
+            <field name="publisher">Editorial Sudamericana</field>
+            <field name="available">1</field>
+        </record>
+
+        <record id="book_demo_2" model="library.book">
+            <field name="name">El Amor en los Tiempos del Cólera</field>
+            <field name="author">Gabriel García Márquez</field>
+            <field name="isbn">0987654321</field>
+            <field name="publication_date">1985-10-01</field>
+            <field name="pages">348</field>
+            <field name="publisher">Editorial Oveja Negra</field>
+            <field name="available">1</field>
+        </record>
+
+        <record id="book_demo_3" model="library.book">
+            <field name="name">1984</field>
+            <field name="author">George Orwell</field>
+            <field name="isbn">9780451524935</field>
+            <field name="publication_date">1949-06-08</field>
+            <field name="pages">328</field>
+            <field name="publisher">Secker &amp; Warburg</field>
+            <field name="available">1</field>
+        </record>
+
+        <record id="book_demo_4" model="library.book">
+            <field name="name">Orgullo y Prejuicio</field>
+            <field name="author">Jane Austen</field>
+            <field name="isbn">9780141439518</field>
+            <field name="publication_date">1813-01-28</field>
+            <field name="pages">279</field>
+            <field name="publisher">T. Egerton</field>
+            <field name="available">1</field>
+        </record>
+
+        <record id="book_demo_5" model="library.book">
+            <field name="name">La Sombra del Viento</field>
+            <field name="author">Carlos Ruiz Zafón</field>
+            <field name="isbn">9788408172170</field>
+            <field name="publication_date">2001-04-12</field>
+            <field name="pages">565</field>
+            <field name="publisher">Planeta</field>
+            <field name="available">1</field>
+        </record>
+    </data>
+</odoo>

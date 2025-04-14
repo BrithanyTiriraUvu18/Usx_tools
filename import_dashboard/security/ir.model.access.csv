@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_import_dashboard,access_import_dashboard,model_import_dashboard,base.group_system,1,1,1,1
+access_import_account_move,access_import_account_move,model_import_account_move_wizard,base.group_system,1,1,1,1
