@@ -10,60 +10,34 @@ class ImportContactWizard(models.TransientModel):
     _name = 'import.contact.wizard'
     _description = 'Import Contact Wizard'
 
-    contact_type = fields.Selection([
-        ('cliente', 'Cliente'),
-        ('proveedor', 'Proveedor')
-    ], string="Tipo de Contacto", required=False)
-
-    file_name = fields.Char("Nombre del archivo", readonly=True)
     file = fields.Binary(string="Archivo", required=False)
-
-    @api.onchange('file')
-    def _onchange_file(self):
-        if self.file and not self.file_name:
-            self.file_name = 'archivo_subido.xlsx'
  
     def action_test(self):
-        # Verificar que el archivo esté presente
         file = self.file
         if not file:
             raise UserError(_("No se ha subido ningún archivo. Por favor, sube un archivo CSV o XLSX."))
 
-        # Decodificar el archivo
         file_data = base64.b64decode(file)
-        
-        # Verificar el formato del archivo
         file_format = self._get_file_format(file_data)
 
-        # Validar según el tipo de archivo
         if file_format == 'csv':
             lines = file_data.decode('utf-8').splitlines()
             reader = csv.reader(lines)
-            header = next(reader)  # Obtener encabezado
+            next(reader)  # Obtener encabezado
             data = list(reader)
-
-            # Validar registros
-            errors = self.validate_csv_data(data)
-
         elif file_format == 'xlsx':
             workbook = load_workbook(io.BytesIO(file_data))
             sheet = workbook.active
-            data = []
-            for row in sheet.iter_rows(min_row=2, values_only=True):
-                data.append(row)
-
-            # Validar registros
-            errors = self.validate_xlsx_data(data)
-        
+            data = [row for row in sheet.iter_rows(min_row=2, values_only=True)]
         else:
             raise UserError(_("Formato de archivo no válido. Solo se permiten archivos CSV o XLSX."))
+        errors = self.validate_data(data)
+    
 
-        # Verificar si hay errores
         if errors:
-            error_message = "\n".join(errors)
-            raise UserError(_("Errores encontrados en los registros:\n\n" + error_message))
+            raise UserError(_("Errores encontrados en los registros:\n\n" + "\n".join(errors) ))
         else:
-            # Mostrar notificación de éxito
+          
             return {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
@@ -84,42 +58,23 @@ class ImportContactWizard(models.TransientModel):
                 return 'csv'
         except Exception:
             pass
-        return ''  # No se pudo determinar el tipo
+        return ''  
 
-    def validate_csv_data(self, data):
+    def validate_data(self, data):
         errors = []
         for i, row in enumerate(data, start=2):
             if len(row) < 6:
                 errors.append(f"Fila {i}: Datos incompletos.")
                 continue
 
-            otra_direccion, calle, calle_2, ciudad, estado, pais = row
+            otra_direccion, _, _, ciudad, _, _ = row[:6]
 
             if otra_direccion not in ['Contacto', 'Dirección de factura', 'Dirección de entrega', 'Otra dirección']:
                 errors.append(f"Fila {i}: El campo 'Otra Dirección' tiene un valor no válido.")
-
             if not ciudad:
                 errors.append(f"Fila {i}: El campo 'Ciudad' no debe estar vacío.")
-
         return errors
-
-    def validate_xlsx_data(self, data):
-        errors = []
-        for i, row in enumerate(data, start=2):
-            if len(row) < 6:
-                errors.append(f"Fila {i}: Datos incompletos.")
-                continue
-
-            otra_direccion, calle, calle_2, ciudad, estado, pais = row
-
-            if otra_direccion not in ['Contacto', 'Dirección de factura', 'Dirección de entrega', 'Otra dirección']:
-                errors.append(f"Fila {i}: El campo 'Otra Dirección' tiene un valor no válido.")
-
-            if not ciudad:
-                errors.append(f"Fila {i}: El campo 'Ciudad' no debe estar vacío.")
-
-        return errors
-
+        
     def action_export_template(self):
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
@@ -136,12 +91,10 @@ class ImportContactWizard(models.TransientModel):
                    'Otra Dirección', 'Calle', 'Calle 2', 'Ciudad', 'Estado', 'País']
         for col_num, header in enumerate(headers):
             worksheet.write(0, col_num, header, header_format)
-            
         worksheet.set_column(0, len(headers) - 1, 25)
 
-        # Hoja de observaciones
+        # observaciones
         worksheet2 = workbook.add_worksheet('Observaciones')
-
         header_observations_format = workbook.add_format({
             'bold': True, 'text_wrap': True, 'valign': 'vcenter',
             'align': 'center', 'border': 1, 'bg_color': '#4CAF50', 'color': 'white'
@@ -185,40 +138,20 @@ class ImportContactWizard(models.TransientModel):
             'type': 'ir.actions.act_url',
             'url': '/web/content/%s?download=true' % attachment.id,
             'target': 'self',
-    }
+        }   
 
     def action_import(self):
         if not self.file:
             raise UserError(_("Debe subir un archivo."))
 
-        # Si no tiene nombre, asignar uno fijo
-        if not self.file_name:
-            self.file_name = 'archivo_importado.xlsx'
-
         file_data = base64.b64decode(self.file)
         file_format = self._get_file_format(file_data)
+        data = self._parse_file(file_data, file_format)
 
-        # Parsear datos según el formato
-        if file_format == 'csv':
-            lines = file_data.decode('utf-8').splitlines()
-            reader = csv.reader(lines)
-            next(reader)  # Saltar cabecera
-            data = list(reader)
-
-        elif file_format == 'xlsx':
-            workbook = load_workbook(io.BytesIO(file_data))
-            sheet = workbook.active
-            data = []
-            for row in sheet.iter_rows(min_row=2, values_only=True):
-                data.append(row)
-
-        else:
-            raise UserError(_("Formato de archivo no válido. Solo se permiten archivos CSV o XLSX."))
-
-        errores = ""
-        duplicados = []
+        errores = []
+        duplicates = []
         contactos_creados = 0
-
+        
         for i, row in enumerate(data, start=2):
             try:
                 nombre, es_empresa_str, es_cliente_str, es_proveedor_str, otra_direccion, calle, calle_2, ciudad, estado, pais = row
@@ -229,14 +162,14 @@ class ImportContactWizard(models.TransientModel):
                 is_supplier = str(es_proveedor_str).strip().lower() == 'true'
 
                 # Verificar si ya existe un contacto igual
-                ya_existe = self.env['res.partner'].search([
+                existing_contact = self.env['res.partner'].search([
                     ('name', '=', nombre),
                     ('is_company', '=', is_company)
                 ], limit=1)
 
-                if ya_existe:
-                    duplicados.append(f"Fila {i}: {nombre}")
-                    continue  # saltar esta fila
+                if existing_contact:
+                    duplicates.append(f"row {i}: {nombre}")
+                    continue 
 
                 country = self.env['res.country'].search([('name', 'ilike', pais)], limit=1)
                 state = self.env['res.country.state'].search([('name', 'ilike', estado)], limit=1)
@@ -254,8 +187,6 @@ class ImportContactWizard(models.TransientModel):
                     'supplier_rank': 1 if is_supplier else 0,
                 }
                 
-                if not is_company:
-                    vals['type'] = self._map_direccion_type(otra_direccion)
 
                 self.env['res.partner'].create(vals)
                 contactos_creados += 1
@@ -266,8 +197,8 @@ class ImportContactWizard(models.TransientModel):
         if errores:
             raise UserError(_("Errores durante la importación:\n\n" + errores))
         
-        if duplicados:
-            mensaje = "\n".join(duplicados)
+        if duplicates:
+            mensaje = "\n".join(duplicates)
             raise UserError(_("Los siguientes contactos ya existen y no fueron importados:\n\n" + mensaje))
 
         return {
@@ -289,6 +220,20 @@ class ImportContactWizard(models.TransientModel):
             'Otra dirección': 'other',
         }
         return mapping.get(tipo, 'contact')
+
+    
+    def _parse_file(self, file_data, file_format):
+        if file_format == 'csv':
+            lines = file_data.decode('utf-8').splitlines()
+            reader = csv.reader(lines)
+            next(reader)
+            return list(reader)
+        elif file_format == 'xlsx':
+            workbook = load_workbook(io.BytesIO(file_data))
+            sheet = workbook.active
+            return [row for row in sheet.iter_rows(min_row=2, values_only=True)]
+        else:
+            raise UserError(_("Formato de archivo no válido. Solo se permiten archivos CSV o XLSX."))
 
 
     

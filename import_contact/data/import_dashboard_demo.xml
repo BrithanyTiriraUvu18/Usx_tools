@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <record id="import_dashboard_contact_entry" model="import.dashboard">
-        <field name="name">Contactos</field>
-        <field name="state">res.partner</field>
-    </record>
-</odoo>
-
