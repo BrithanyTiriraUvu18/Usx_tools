@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_invoice_inherit_tree" model="ir.ui.view">
+        <field name="name">account.move.inherit.tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="state_document" string="State Document" />
+                <field name="access_key_label" string="Access Key" optional="hide" />
+                <field
+                    name="date_authorized"
+                    string="Authorization date"
+                    optional="hide"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_gema_ride_tree_extension" model="ir.ui.view">
+        <field name="name">account.move.out.tree.extension</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field
+                    name="epayment_id"
+                    widget="selection"
+                    readonly="state != 'draft'"
+                    required="move_type not in ('entry', 'out_receipt', 'in_receipt')"
+                    invisible="move_type in ('entry', 'out_receipt', 'in_receipt')"
+                />
+            </xpath>
+            <xpath expr="//field[@name='payment_reference']" position="after">
+                <field name="doc_type" invisible="1" readonly="1" />
+                <field
+                    name="access_key_label"
+                    invisible="move_type in ('out_invoice', 'out_refund') or (state != 'posted' and move_type in ('entry', 'out_receipt', 'in_receipt')) or doc_type=='liq_purchase'"
+                    readonly="move_type not in ('in_invoice', 'in_refund')"
+                />
+                <field
+                    name="reason"
+                    readonly="state != 'draft'"
+                    invisible="move_type != 'out_refund'"
+                    required="move_type == 'out_refund'"
+                />
+                <field name="canceled_document" invisible="1" />
+                <field
+                    name="reason_for_cancellation"
+                    invisible="state != 'cancel' or canceled_document == 'False'"
+                    readonly="canceled_document == 'True'"
+                />
+            </xpath>
+            <xpath expr="//page[@name='other_info']" position="after">
+                <page
+                    string="Documento Electrónico"
+                    name="elec_doc"
+                    invisible="context.get('move_type') in ('entry', 'out_receipt', 'in_receipt') or doc_type=='entry'"
+                >
+                    <group name="documents">
+                        <group
+                            string="Información Documentos"
+                            invisible="state != 'posted' or unauthorized_bool == True"
+                        >
+                            <field
+                                string="Intentos"
+                                name="attempts"
+                                readonly="1"
+                                invisible="state != 'posted'"
+                            />
+                            <field name="access_key_label" string="Clave de acceso" />
+                            <field name="state_send_document" string="Estado Factura" />
+                            <field name="date_authorized" readonly="1" />
+                            <field name="ride" filename="ride_name" readonly="1" />
+                            <field name="ride_name" invisible="1" />
+                            <field name="xml_ride" filename="xml_name" readonly="1" />
+                            <field name="xml_name" invisible="1" />
+                            <field name="auth_document" string="Mensaje" />
+                        </group>
+                        <field name="unauthorized_bool" invisible="1" />
+                        <group
+                            string="Error Información"
+                            invisible="unauthorized_bool != 'False'"
+                        >
+                            <field name="state_send_document" string="Estado Factura" />
+                            <field name="auth_document" string="Mensaje" readonly="1" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//page[@name='other_info']" position="after">
+                <page
+                    string="Información Adicional (RIDE)"
+                    invisible="doc_type=='entry'"
+                >
+                    <field
+                        name="lines_info_additional"
+                        nolabel="1"
+                        readonly="state in ['cancel', 'posted']"
+                    >
+                        <tree editable="bottom">
+                            <field name="name" />
+                            <field name="description" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//button[@name='button_draft']" position="after">
+                <button
+                    class="btn btn-primary"
+                    groups="account.group_account_manager"
+                    type="object"
+                    name="action_cancel_invoice"
+                    invisible="state != 'posted' or doc_type=='entry'"
+                >
+                    <span>Cancel Invoice</span>
+                </button>
+            </xpath>
+            <xpath expr="//form/header" position="inside">
+                <button
+                    class="btn btn-primary"
+                    icon="fa-file-text"
+                    type="object"
+                    name="send_electronic_document"
+                    invisible="state != 'posted' or (state_send_document == 'authorized' and ride) or (move_type == 'in_invoice' and doc_type !='liq_purchase') or move_type=='in_refund' or doc_type=='entry'"
+                >
+                    <span>Envío Documentos Electrónicos</span>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

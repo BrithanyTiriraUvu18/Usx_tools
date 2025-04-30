@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Form view -->
+    <record id="view_partner_auth_form" model="ir.ui.view">
+        <field name="name">account.partner.auth.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Autorizaciones">
+                    <group>
+                        <field name="ats_support_id" />
+                        <field name="is_electronic" />
+                    </group>
+                    <group>
+                        <group
+                            string="Manual Documentos"
+                            invisible="is_electronic == 'True'"
+                            required="is_electronic == 'False'"
+                        >
+                            <field name="auth_num" />
+                            <field name="serie_est" />
+                            <field name="serie_issue" />
+                            <field name="num_start" />
+                            <field name="num_end" />
+                            <field name="expiration_date" />
+
+                        </group>
+
+                    </group>
+
+
+                </page>
+            </notebook>
+
+            <xpath expr="//field[@name='email']" position='attributes'>
+               <attribute name="required">is_electronic ==True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,350 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_parent
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-14 16:26+0000\n"
+"PO-Revision-Date: 2024-08-14 16:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+msgid "<strong>Date from :</strong>"
+msgstr "<strong>Fecha desde:</strong>"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+msgid "<strong>Date to :</strong>"
+msgstr "<strong>Fecha hasta :</strong>"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+msgid "<strong>Target Moves :</strong>"
+msgstr "<strong>Objetivo Movimientos :</strong>"
+
+#. module: account_parent
+#: model:ir.model,name:account_parent.model_account_account
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: account_parent
+#: model:ir.model,name:account_parent.model_account_chart_template
+msgid "Account Chart Template"
+msgstr "Plantilla de plan de cuentas"
+
+#. module: account_parent
+#: model:ir.model,name:account_parent.model_account_open_chart
+msgid "Account Open chart"
+msgstr "Cuadro de Apertura de Cuenta"
+
+#. module: account_parent
+#: model:ir.model.fields,help:account_parent.field_account_account__account_type
+msgid ""
+"Account Type is used for information purpose, to generate country-specific "
+"legal reports, and set the rules to close a fiscal year and generate opening"
+" entries."
+msgstr ""
+"El uso del tipo de cuenta es con propósitos informativos, para así generar "
+"reportes legales específicos de cada país y establecer las reglas para "
+"cerrar un año fiscal y generar los asientos de apertura."
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.view_account_chart
+msgid "Account charts"
+msgstr "Cuadro de Cuentas"
+
+#. module: account_parent
+#: model:ir.model.fields.selection,name:account_parent.selection__account_open_chart__display_account__all
+msgid "All"
+msgstr "Todas"
+
+#. module: account_parent
+#: model:ir.model.fields.selection,name:account_parent.selection__account_open_chart__target_move__all
+msgid "All Entries"
+msgstr "Todas las Entradas"
+
+#. module: account_parent
+#: model:ir.model.fields.selection,name:account_parent.selection__account_open_chart__target_move__posted
+msgid "All Posted Entries"
+msgstr "Todas las Entradas Publicadas"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__unfold
+msgid "Auto Unfold"
+msgstr "Despligue Automatico"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_account__balance
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Balance"
+msgstr "Balance"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.view_account_chart
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: account_parent
+#: model:ir.actions.client,name:account_parent.open_view_account_tree
+msgid "Chart of Account Hierarchy"
+msgstr ""
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Chart of Account Not Loaded."
+msgstr ""
+
+#. module: account_parent
+#: model:ir.actions.act_window,name:account_parent.action_account_chart
+#: model:ir.ui.menu,name:account_parent.menu_action_account_chart
+msgid "Chart of Accounts Hierarchy"
+msgstr ""
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_account__child_ids
+msgid "Child Accounts"
+msgstr "Cuentas Hijas"
+
+#. module: account_parent
+#: model:ir.model.fields.selection,name:account_parent.selection__account_open_chart__report_type__account_type
+msgid "CoA based on Account Type"
+msgstr ""
+
+#. module: account_parent
+#: model:ir.model.fields.selection,name:account_parent.selection__account_open_chart__report_type__account
+msgid "CoA based on Accounts"
+msgstr ""
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Code"
+msgstr "Codigo"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__company_id
+msgid "Company"
+msgstr "Compañia"
+
+#. module: account_parent
+#: model:ir.model,name:account_parent.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__create_date
+msgid "Created on"
+msgstr "Creado"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_account__credit
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Credit"
+msgstr "Credit"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Date :"
+msgstr "Fecha :"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Date From :"
+msgstr "Fecha Desde :"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Date To :"
+msgstr "Fecha Hasta :"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.view_account_chart
+msgid "Date(s)"
+msgstr "Fecha(s)"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_account__debit
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Debit"
+msgstr "Debito"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__display_account
+msgid "Display Accounts"
+msgstr "Mostrar Cuentas"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Display Accounts :"
+msgstr "Mostrar Cuentas :"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__date_to
+msgid "End Date"
+msgstr "Fecha Final"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Ending Balance"
+msgstr "Balance Final"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__has_parent
+msgid "Has Parent"
+msgstr "Tiene Padre"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__id
+msgid "ID"
+msgstr ""
+
+#. module: account_parent
+#: model:ir.model.fields,help:account_parent.field_account_open_chart__report_type
+msgid "If you haven't configured parent accounts, then use 'Account Type'"
+msgstr ""
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_account__initial_balance
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Initial Balance"
+msgstr "Balance Inicial"
+
+#. module: account_parent
+#: model:ir.model,name:account_parent.model_account_journal
+msgid "Journal"
+msgstr "Diario"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_account__move_line_ids
+msgid "Journal Entry Lines"
+msgstr "Líneas de Asiento"
+
+#. module: account_parent
+#: model:ir.model,name:account_parent.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunte contable"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__write_uid
+msgid "Last Updated by"
+msgstr "Ultima Actualizacion por"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__write_date
+msgid "Last Updated on"
+msgstr "Ultima Actualizacion"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Name"
+msgstr "Nombre"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.view_account_chart
+msgid ""
+"Note: No hierarchical view will be displayed as there is no hierarchy "
+"defined. Please set parent accounts first"
+msgstr ""
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.view_account_chart
+msgid "Open Charts"
+msgstr "Abrir Cuentas"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_account__parent_id
+msgid "Parent Account"
+msgstr "Cuentas Padre"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_account__parent_path
+msgid "Parent Path"
+msgstr "Direccion Padre"
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Report :"
+msgstr "Reporte :"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__report_type
+msgid "Report type"
+msgstr "Tipo de Reporte"
+
+#. module: account_parent
+#: model:res.groups,name:account_parent.group_coas_user
+msgid "Show Chart of Account Structure"
+msgstr ""
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__show_initial_balance
+msgid "Show Initial Balance"
+msgstr "Mostrar Balance Inicial"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__date_from
+msgid "Start Date"
+msgstr "Fecha Inicio"
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_open_chart__target_move
+msgid "Target Moves"
+msgstr ""
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Target Moves :"
+msgstr ""
+
+#. module: account_parent
+#: model:ir.model.fields,field_description:account_parent.field_account_account__account_type
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_body_pdf
+#: model_terms:ir.ui.view,arch_db:account_parent.report_coa_hierarchy
+msgid "Type"
+msgstr "Tipo"
+
+#. module: account_parent
+#: model:ir.model.fields.selection,name:account_parent.selection__account_account__account_type__view
+msgid "View"
+msgstr "Vista"
+
+#. module: account_parent
+#: model:ir.model.fields.selection,name:account_parent.selection__account_open_chart__display_account__movement
+msgid "With movements"
+msgstr "Con movimientos"
+
+#. module: account_parent
+#: model:ir.model.fields,help:account_parent.field_account_open_chart__display_account
+msgid ""
+"`All`: All account will be displayed, `With Movements`: Only accounts that "
+"have a movement based on the conditions given"
+msgstr ""
+
+#. module: account_parent
+#: model_terms:ir.ui.view,arch_db:account_parent.view_account_chart
+msgid "or"
+msgstr "o"

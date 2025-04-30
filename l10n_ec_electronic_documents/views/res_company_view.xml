@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_company_form_inherit_gema" model="ir.ui.view">
+        <field name="name">view.company.form.inherit.gema</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="gema_api" string="Gema Api">
+                    <group cols="2" string="General Configuration  ">
+                        <field name="env_service" />
+                        <field name="required_accounting" />
+                    </group>
+                    <group cols="2" string="Gema Api">
+                        <field name="gema_user" />
+                        <field name="gema_password" />
+                        <field name="conect_gema" />
+                        <field name="transfer_account_id" invisible="1" />
+                    </group>
+                    <group cols="2" string="Invoice Configuration  ">
+                        <field name="attempts_per_day" />
+                        <field name="ride_name_param" />
+                        <field name="ride_footer_param" />
+                        <field name="ride_main_color_param" widget="color" />
+                        <field name="ride_disable_payment_timeout_param" />
+                    </group>
+                    <group col="3" string="Legend (for Ride Name)">
+                        <group>
+                            <span colspan="2">Access Key: %%(key)s</span>
+                            <span
+                                colspan="2"
+                            >Current Year with Century: %%(year)s</span>
+                            <span
+                                colspan="2"
+                            >Current Year without Century: %%(y)s</span>
+                            <span colspan="2">Month: %%(month)s</span>
+                            <span colspan="2">Day: %%(day)s</span>
+                        </group>
+                        <group>
+                            <span colspan="2">Day of the Year: %%(doy)s</span>
+                            <span colspan="2">Week of the Year: %%(woy)s</span>
+                            <span
+                                colspan="2"
+                            >Day of the Week (0:Monday): %%(weekday)s</span>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

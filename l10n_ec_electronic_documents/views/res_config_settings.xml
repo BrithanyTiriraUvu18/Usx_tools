@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <record
+        id="res_config_settings_view_form_inherit_doc_electronic"
+        model="ir.ui.view"
+    >
+            <field name="name">
+                res.config.settings.view.form.inherit.doc.electronc
+            </field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="15" />
+            <field name="inherit_id" ref="base.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <app
+                    data-string="Electronic Documents"
+                    string="Documentos Electrónicos"
+                    name="l10n_ec_electronic_documents"
+                    data-key="l10n_ec_electronic_documents"
+                >
+                        <block
+                        class="app_settings_block"
+                        id="electronic_doc_17"
+                        title="Configuración Documentos Electrónicos"
+                        data-key="l10n_ec_electronic_documents"
+                    >
+                            <setting id="business_documents">
+                                <span class="o_form_label">
+                                    Tipo de documento para factura
+                                </span>
+                                <span
+                                class="fa fa-lg fa-file-text-o"
+                                title="Valores establecidos específicos de cada empresa."
+                                aria-label="Valores establecidos específicos de cada empresa."
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                                <div class="text-muted">
+                                    Establecer tipo de documento defecto para facturas..
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16 row">
+                                        <field
+                                        name="voucher_out_invoice"
+                                        class="oe_inline"
+                                    />
+                                    </div>
+                                </div>
+                            </setting>
+                            <setting id="credit_note_elec">
+                                <span class="o_form_label">
+                                    Tipo de documento para nota de crédito
+                                </span>
+                                <span
+                                class="fa fa-lg fa-file-o"
+                                title="Valores establecidos específicos de cada empresa."
+                                aria-label="Valores establecidos específicos de cada empresa."
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                                <div class="text-muted">
+                                    Establecer tipo de documento por defecto para la nota de crédito.
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field
+                                        name="voucher_out_refund"
+                                        class="oe_inline"
+                                    />
+                                    </div>
+                                </div>
+                            </setting>
+                            <setting>
+                                <span class="o_form_label">
+                                    Forma de pago por defecto
+                                </span>
+                                <span
+                                class="fa fa-lg fa-money"
+                                title="Valores establecidos específicos de cada empresa"
+                                aria-label="Valores establecidos específicos de cada empresa"
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                                <div class="text-muted">
+                                    Seleccione método de pago para todas las transacciones
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16 row">
+                                        <field
+                                        name="epayment_config"
+                                        class="oe_inline"
+                                    />
+                                    </div>
+                                </div>
+                            </setting>
+                            <setting>
+                                <span class="o_form_label">
+                                    Ayuda fiscal por defecto
+                                </span>
+                                <span
+                                class="fa fa-lg fa-money"
+                                title="Valores establecidos específicos de cada empresa"
+                                aria-label="Valores establecidos específicos de cada empresa"
+                                groups="base.group_multi_company"
+                                role="img"
+                            />
+                                <div class="text-muted">
+                                    Seleccione soporte fiscal por defecto para los vendedores
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16 row">
+                                        <field name="tax_support" class="oe_inline" />
+                                    </div>
+                                </div>
+                            </setting>
+                        </block>
+                    </app>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_config_settings_action" model="ir.actions.act_window">
+            <field name="name">Configuración</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'l10n_ec_electronic_documents'}</field>
+        </record>
+        <menuitem
+        id="employee_management_menu_root"
+        name="Electronic Documents"
+        sequence="1"
+    />
+        <menuitem
+        id="employee_management_menu_action"
+        name="Configuration"
+        parent="l10n_ec_electronic_documents.employee_management_menu_root"
+        sequence="6"
+    />
+        <menuitem
+        id="employee_contract_settings_menu_action"
+        name="Settings"
+        parent="l10n_ec_electronic_documents.employee_management_menu_action"
+        action="res_config_settings_action"
+        sequence="7"
+    />
+</odoo>

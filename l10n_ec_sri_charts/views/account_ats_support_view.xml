@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record id="account_ats_support_tree_view" model="ir.ui.view">
+            <field name="name">account.ats.support.tree</field>
+            <field name="model">account.ats.support</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code" />
+                    <field name="type_support" />
+                    <field name="document_type_ids" widget="many2many_tags" />
+                </tree>
+            </field>
+        </record>
+        <record id="account_ats_support_form_view" model="ir.ui.view">
+            <field name="name">account.ats.support.form</field>
+            <field name="model">account.ats.support</field>
+            <field name="arch" type="xml">
+                <form string="Ecuadorian Tax Support">
+                    <sheet>
+                        <group>
+                            <field name="code" />
+                            <field name="type_support" />
+                            <field name="document_type_ids" widget="many2many_tags" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="account_ats_support_search_view" model="ir.ui.view">
+            <field name="name">account.ats.support.tree</field>
+            <field name="model">account.ats.support</field>
+            <field name="arch" type="xml">
+                <form string="Ecuadorian Tax Supports">
+                    <search>
+                        <field name="code" />
+                        <field name="type_support" />
+                    </search>
+                </form>
+            </field>
+        </record>
+        <record id="action_account_ats_support_tree_view" model="ir.actions.act_window">
+            <field name="name">Ecuadorian Tax Supports</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.ats.support</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account_ats_support_tree_view" />
+        </record>
+
+        <menuitem
+        id="menu_action_account_ats_support_tree_view"
+        name="Apoyo Fiscal Ecuatoriano"
+        parent="l10n_ec_sri_charts.submenu_account_ats"
+        action="action_account_ats_support_tree_view"
+        sequence="30"
+    />
+
+</odoo>

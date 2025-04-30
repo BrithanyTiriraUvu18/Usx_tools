@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+        <record id="account_sri_charts_form_view" model="ir.ui.view">
+            <field name="name">account.sri.charts.form.view</field>
+            <field name="model">account.sri.charts</field>
+            <field name="arch" type="xml">
+                <form string="Sri Charts Form">
+                    <sheet>
+                        <group>
+                            <group>
+                            <field name="name" placeholder="Invoice" />
+                            <field name="code" placeholder="01" />
+                            <field name="value" placeholder="out_invoice" />
+                            <field name="active" widget="boolean_toggle" />
+                            <dield name="type" invisible="1" />
+                            </group>
+
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_sri_charts_tree_view" model="ir.ui.view">
+            <field name="name">account.sri.charts.tree.view</field>
+            <field name="model">account.sri.charts</field>
+            <field name="arch" type="xml">
+                <tree string="Charts list">
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="active" widget="boolean_toggle" />
+                </tree>
+            </field>
+        </record>
+</odoo>

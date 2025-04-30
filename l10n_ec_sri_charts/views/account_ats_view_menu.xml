@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+        <record id="action_vocuher_type" model="ir.actions.act_window">
+            <field name="name">Tipo Comprobante</field>
+            <field name="res_model">account.voucher.type</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="domain">[('type','=','tax_withholding')]</field> -->
+            <!-- <field name="context">{'default_type': 'tax_withholding'}</field> -->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tipo Comprobante
+                </p>
+            </field>
+        </record>
+
+
+
+        <!-- MENU -->
+
+        <!-- <menuitem
+        id="menu_account_sri"
+        name="Sri"
+        parent="account.menu_finance"
+        sequence="100"
+        /> -->
+        <menuitem
+        id="submenu_account_ats"
+        name="ATS"
+        parent="l10n_ec_sri_charts.menu_account_sri"
+        sequence="1"
+    />
+        <menuitem
+        id="submenu_account_ats_voucher_type"
+        name="Tipo Comprobante"
+        parent="submenu_account_ats"
+        sequence="2"
+        action="action_vocuher_type"
+    />
+
+
+</odoo>

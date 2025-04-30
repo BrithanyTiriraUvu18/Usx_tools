@@ -1,0 +1,117 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_ec_identification_number
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-14 17:27+0000\n"
+"PO-Revision-Date: 2024-08-14 17:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_config_settings__fill_data
+#: model_terms:ir.ui.view,arch_db:l10n_ec_identification_number.res_config_settings_identification_number_view_form
+msgid "Automatically fill in data?"
+msgstr "¿Rellenar datos automáticamente?"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields,help:l10n_ec_identification_number.field_res_partner__is_company
+#: model:ir.model.fields,help:l10n_ec_identification_number.field_res_users__is_company
+msgid "Check if the contact is a company, otherwise it is a person"
+msgstr ""
+"Marque esta casilla si el contacto es una empresa. De lo contrario, es una "
+"persona."
+
+#. module: l10n_ec_identification_number
+#: model_terms:ir.ui.view,arch_db:l10n_ec_identification_number.view_res_partner_cedruc_form
+msgid "Company name"
+msgstr "Nombre Compañia"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model,name:l10n_ec_identification_number.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: l10n_ec_identification_number
+#: model:ir.ui.menu,name:l10n_ec_identification_number.menu_identification_config_settings
+msgid "Configuration"
+msgstr "Configuracion"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model,name:l10n_ec_identification_number.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: l10n_ec_identification_number
+#: model:ir.actions.act_window,name:l10n_ec_identification_number.action_automatic_filling_configuration
+msgid "Electronic Documents"
+msgstr "Documentos Electronicos"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields.selection,name:l10n_ec_identification_number.selection__res_partner__type_identifier__cedula
+msgid "ID"
+msgstr ""
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_partner__identifier
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_users__identifier
+msgid "ID / STR"
+msgstr ""
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_partner__type_identifier
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_users__type_identifier
+msgid "ID Type"
+msgstr ""
+
+#. module: l10n_ec_identification_number
+#: model_terms:ir.ui.view,arch_db:l10n_ec_identification_number.res_config_settings_identification_number_view_form
+msgid "Identification"
+msgstr "Identificacion"
+
+#. module: l10n_ec_identification_number
+#: model_terms:ir.ui.view,arch_db:l10n_ec_identification_number.res_config_settings_identification_number_view_form
+msgid "Identification Number"
+msgstr "Numero de Identificacion"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields,help:l10n_ec_identification_number.field_res_partner__identifier
+#: model:ir.model.fields,help:l10n_ec_identification_number.field_res_users__identifier
+msgid "Identification or Single Taxpayer Registry"
+msgstr "Identificación o Registro Único de Contribuyentes"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_partner__is_end_consumer
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_users__is_end_consumer
+msgid "Is End Consumer"
+msgstr "Es consumidor final"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_partner__is_company
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_users__is_company
+msgid "Is a Company"
+msgstr "Es una empresa"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields.selection,name:l10n_ec_identification_number.selection__res_partner__type_identifier__pasaporte
+msgid "PASSPORT"
+msgstr "Pasaporte"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields.selection,name:l10n_ec_identification_number.selection__res_partner__type_identifier__ruc
+msgid "STR"
+msgstr "Ruc"
+
+#. module: l10n_ec_identification_number
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_partner__trade_name
+#: model:ir.model.fields,field_description:l10n_ec_identification_number.field_res_users__trade_name
+#: model_terms:ir.ui.view,arch_db:l10n_ec_identification_number.view_res_partner_cedruc_form
+msgid "Trade name"
+msgstr "Nombre comercial"

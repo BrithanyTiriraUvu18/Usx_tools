@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sri_charts,access_sri_charts,model_account_sri_charts,,1,1,1,1
+access_account_ats_support,access_account_ats_support,model_account_ats_support,account.group_account_invoice,1,1,1,1
+access_account_voucher_type,access_account_voucher_type,model_account_voucher_type,account.group_account_invoice,1,1,1,1
+access_account_ats,access_account_ats,model_account_ats,account.group_account_invoice,1,1,1,1
+access_documents_line,access_documents_line,model_documents_line,account.group_account_invoice,1,1,1,1

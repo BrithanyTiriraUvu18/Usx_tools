@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+        <record model="account.sri.charts" id="sri0001">
+            <field name="name">RUC</field>
+            <field name="code">04</field>
+            <field name="value">ruc</field>
+            <field name="type">identification_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0002">
+            <field name="name">CEDULA</field>
+            <field name="code">05</field>
+            <field name="value">cedula</field>
+            <field name="type">identification_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0003">
+            <field name="name">PASAPORTE</field>
+            <field name="code">06</field>
+            <field name="value">pasaporte</field>
+            <field name="type">identification_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0004">
+            <field name="name">CONSUMIDOR FINAL</field>
+            <field name="code">07</field>
+            <field name="value">final_consumer_sale</field>
+            <field name="type">identification_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0005">
+            <field name="name">IDENTIFICACION EXTERIOR</field>
+            <field name="code">08</field>
+            <field name="value">external_identification</field>
+            <field name="type">identification_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0006">
+            <field name="name">FACTURA DE VENTA</field>
+            <field name="code">01</field>
+            <field name="value">out_invoice</field>
+            <field name="type">document_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0007">
+            <field name="name">FACTURA DE COMPRA</field>
+            <field name="code">03</field>
+            <field name="value">in_invoice</field>
+            <field name="type">document_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0008">
+            <field name="name">NOTA DE CREDITO CLIENTE</field>
+            <field name="code">04</field>
+            <field name="value">out_refund</field>
+            <field name="type">document_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0038">
+            <field name="name">NOTA DE CREDITO PROVEEDOR</field>
+            <field name="code">04</field>
+            <field name="value">in_refund</field>
+            <field name="type">document_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0009">
+            <field name="name">NOTA DE DEBITO</field>
+            <field name="code">05</field>
+            <field name="value">debit_note</field>
+            <field name="type">document_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0010">
+            <field name="name">GUIA DE REMISION</field>
+            <field name="code">06</field>
+            <field name="value">referral_guide</field>
+            <field name="type">document_type</field>
+        </record>
+        <record model="account.sri.charts" id="sri0011">
+            <field name="name">RETENCIONES</field>
+            <field name="code">07</field>
+            <field name="value">withholding</field>
+            <field name="type">document_type</field>
+        </record>
+
+        <!-- tabla 16 -->
+        <record model="account.sri.charts" id="sri0012">
+            <field name="name">IVA</field>
+            <field name="code">2</field>
+            <field name="value">vat</field>
+            <field name="type">tax_code</field>
+        </record>
+        <record model="account.sri.charts" id="sri0013">
+            <field name="name">ICE</field>
+            <field name="code">3</field>
+            <field name="value">ice</field>
+            <field name="type">tax_code</field>
+        </record>
+        <record model="account.sri.charts" id="sri0014">
+            <field name="name">IRBPNR</field>
+            <field name="code">5</field>
+            <field name="value">irbpnr</field>
+            <field name="type">tax_code</field>
+        </record>
+
+        <!-- tabla 17 -->
+        <record model="account.sri.charts" id="sri0015">
+            <field name="name">0%</field>
+            <field name="code">0</field>
+            <field name="value">0</field>
+            <field name="type">vat_rate</field>
+        </record>
+        <record model="account.sri.charts" id="sri0016">
+            <field name="name">12%</field>
+            <field name="code">2</field>
+            <field name="value">12</field>
+            <field name="type">vat_rate</field>
+        </record>
+        <record model="account.sri.charts" id="sri0017">
+            <field name="name">14%</field>
+            <field name="code">3</field>
+            <field name="value">14</field>
+            <field name="type">vat_rate</field>
+        </record>
+        <record model="account.sri.charts" id="sri0018">
+            <field name="name">No objeto a Impuesto</field>
+            <field name="code">6</field>
+            <field name="value">-1</field>
+            <field name="type">vat_rate</field>
+        </record>
+        <record model="account.sri.charts" id="sri0019">
+            <field name="name">Excento de IVA</field>
+            <field name="code">7</field>
+            <field name="value">-1</field>
+            <field name="type">vat_rate</field>
+        </record>
+
+        <!-- Table 20 -->
+
+        <record model="account.sri.charts" id="sri0020">
+            <field name="name">10%</field>
+            <field name="code">9</field>
+            <field name="value">10</field>
+            <field name="type">vat_withholding</field>
+        </record>
+        <record model="account.sri.charts" id="sri0021">
+            <field name="name">20%</field>
+            <field name="code">10</field>
+            <field name="value">20</field>
+            <field name="type">vat_withholding</field>
+        </record>
+        <record model="account.sri.charts" id="sri0022">
+            <field name="name">30%</field>
+            <field name="code">1</field>
+            <field name="value">30</field>
+            <field name="type">vat_withholding</field>
+        </record>
+        <record model="account.sri.charts" id="sri0023">
+            <field name="name">50%</field>
+            <field name="code">11</field>
+            <field name="value">50</field>
+            <field name="type">vat_withholding</field>
+        </record>
+        <record model="account.sri.charts" id="sri0024">
+            <field name="name">70%</field>
+            <field name="code">2</field>
+            <field name="value">70</field>
+            <field name="type">vat_withholding</field>
+        </record>
+        <record model="account.sri.charts" id="sri0025">
+            <field name="name">100%</field>
+            <field name="code">3</field>
+            <field name="value">100</field>
+            <field name="type">vat_withholding</field>
+        </record>
+        <record model="account.sri.charts" id="sri0026">
+            <field name="name">0%</field>
+            <field name="code">7</field>
+            <field name="value">0</field>
+            <field name="type">vat_withholding</field>
+        </record>
+        <record model="account.sri.charts" id="sri0039">
+            <field name="name">5%</field>
+            <field name="code">4580</field>
+            <field name="value">4580</field>
+            <field name="type">vat_withholding</field>
+        </record>
+
+        <!-- Table 24 -->
+        <!-- Form of payment -->
+
+        <record model="account.sri.charts" id="sri0027">
+            <field name="name">EFECTIVO</field>
+            <field name="code">01</field>
+            <field name="value">cash</field>
+            <field name="type">payment_method</field>
+        </record>
+        <record model="account.sri.charts" id="sri0028">
+            <field name="name">COMPENSACIÓN DE DEUDAS</field>
+            <field name="code">15</field>
+            <field name="value">debit_offsetting</field>
+            <field name="type">payment_method</field>
+        </record>
+        <record model="account.sri.charts" id="sri0029">
+            <field name="name">TARJETA DE DÉBITO</field>
+            <field name="code">16</field>
+            <field name="value">debit_card</field>
+            <field name="type">payment_method</field>
+        </record>
+        <record model="account.sri.charts" id="sri0030">
+            <field name="name">BANCO</field>
+            <field name="code">17</field>
+            <field name="value">bank</field>
+            <field name="type">payment_method</field>
+        </record>
+        <record model="account.sri.charts" id="sri0031">
+            <field name="name">TARJETA PREPAGO</field>
+            <field name="code">18</field>
+            <field name="value">prepaid_card</field>
+            <field name="type">payment_method</field>
+        </record>
+        <record model="account.sri.charts" id="sri0032">
+            <field name="name">TARJETA DE CRÉDITO</field>
+            <field name="code">19</field>
+            <field name="value">credit_card</field>
+            <field name="type">payment_method</field>
+        </record>
+        <record model="account.sri.charts" id="sri0033">
+            <field name="name">OTROS CON UTILIZACION DEL SISTEMA FINANCIERO </field>
+            <field name="code">20</field>
+            <field name="value"> with_use_financial_system</field>
+            <field name="type">payment_method</field>
+        </record>
+        <record model="account.sri.charts" id="sri0034">
+            <field name="name">ENDOSO DE TÍTULOS</field>
+            <field name="code">21</field>
+            <field name="value">endorsement_of_securities</field>
+            <field name="type">payment_method</field>
+        </record>
+
+        <!-- tax_withholding TABLA 20/19() -->
+        <record model="account.sri.charts" id="sri0035">
+            <field name="name">RENTA</field>
+            <field name="code">1</field>
+            <field name="value">ret_ir</field>
+            <field name="type">tax_withholding</field>
+        </record>
+        <record model="account.sri.charts" id="sri0036">
+            <field name="name">IVA</field>
+            <field name="code">2</field>
+            <field name="value">vat</field>
+            <field name="type">tax_withholding</field>
+        </record>
+        <record model="account.sri.charts" id="sri0037">
+            <field name="name">ISD</field>
+            <field name="code">6</field>
+            <field name="value">isd</field>
+            <field name="type">tax_withholding</field>
+        </record>
+
+</odoo>
