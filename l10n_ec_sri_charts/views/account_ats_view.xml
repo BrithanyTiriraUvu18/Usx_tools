@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record id="account_ats_tree_view" model="ir.ui.view">
+            <field name="name">account.ats.tree</field>
+            <field name="model">account.ats</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="period" />
+                    <field
+                    name="state"
+                    widget="badge"
+                    decoration-success="state == 'export'"
+                    decoration-danger="state == 'export_error'"
+                    decoration-info="state == 'draft'"
+                    optional="show"
+                />
+
+                </tree>
+            </field>
+        </record>
+        <record id="account_ats_form_view" model="ir.ui.view">
+            <field name="name">account.ats.form</field>
+            <field name="model">account.ats</field>
+            <field name="arch" type="xml">
+                <form string="A.T.S">
+                    <header>
+
+                        <!-- <button
+                            name="valid_ats"
+                            string="Validate ATS"
+                            class="oe_highlight"
+                            type="object"
+                        /> -->
+                        <button
+                        name="export_ats"
+                        string="Exportar ATS"
+                        class="oe_highlight"
+                        type="object"
+                    />
+                        <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="export,export_error"
+                    />
+
+                    </header>
+                    <sheet>
+                        <group string="Declaración">
+                            <field name="num_estab_ruc" />
+                            <field name="period" string="Periodo" />
+
+                        </group>
+                        <group>
+                            <separator colspan="4" />
+                            <field name="fcname" invisible="1" />
+                            <field name="xml_ats" filename="fcname" readonly="1" />
+                        </group>
+                        <group invisible="state != 'export_error'">
+                            <separator colspan="4" />
+                            <field name="fcname_errores" invisible="1" />
+                            <field
+                            name="error_data"
+                            filename="fcname_errores"
+                            readonly="1"
+                        />
+                        </group>
+                        <group>
+                            <button
+                            name="get_all_documents"
+                            string="Obtener Documentos"
+                            class="oe_highlight"
+                            type="object"
+                        />
+
+                        </group>
+
+                        <!-- attrs="{'domain': [('document_lines.document_type', '=', 'in_invoice')]}" -->
+                        <notebook>
+                            <page id="sales" string="Documentos">
+                                <field name="document_lines">
+                                    <tree editable="top" string="Sales Invoice">
+                                        <field name="currency_id" invisible="1" />
+                                        <field name="document_type" />
+                                        <field name="document_id" />
+                                        <field name="date" />
+                                        <field
+                                        name="amount_total"
+                                        widget='monetary'
+                                        options="{'currency_field': 'currency_id'}"
+                                    />
+                                        <field name="validation_ats" />
+
+
+
+                                    </tree>
+
+                                </field>
+                            </page>
+                            <!-- <page id="purchase" string="Purchases">
+                                <field name="document_lines">
+                                    <tree editable="top" string="Purchase Invoice">
+                                        <field name="currency_id" invisible="1" />
+                                        <field name="document_type" />
+                                        <field name="document_id" />
+                                        <field name="identifier" />
+                                        <field name="date" />
+                                        <field
+                                            name="amount_total"
+                                            widget='monetary'
+                                            options="{'currency_field': 'currency_id'}"
+                                        />
+                                        <field name="validation_ats" />
+
+                                    </tree>
+
+                                </field>
+                            </page>
+                            <page id="sales_refunds" string="NC Sales">
+                                <field name="all_documents">
+                                    <tree string="Sales Refunds" />
+
+                                </field>
+                            </page>
+                            <page id="purchase_refunds" string="NC Purchase">
+                                <field name="all_documents">
+                                    <tree string="Purchase Refunds" />
+
+                                </field>
+                            </page> -->
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_account_ats_tree_view" model="ir.actions.act_window">
+            <field name="name">GENERAR ATS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.ats</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account_ats_tree_view" />
+        </record>
+
+        <menuitem
+        id="menu_action_account_ats__tree_view"
+        name="GENERAR ATS"
+        parent="l10n_ec_sri_charts.submenu_account_ats"
+        action="action_account_ats_tree_view"
+        sequence="30"
+    />
+
+</odoo>

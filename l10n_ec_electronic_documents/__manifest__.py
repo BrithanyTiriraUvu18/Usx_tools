@@ -1,0 +1,27 @@
+{
+    "name": "L10n Gema API",
+    "version": "17.0.1.0.0",
+    "category": "Accounting",
+    "depends": [
+        "base",
+        "account",
+        "bi_journal_base_seq",
+        "l10n_ec_sri_charts",
+        "web_notify",
+    ],
+    "author": "Jorge Armas / FenixERP",
+    "summary": "Module to send Electronic Documents to SRI with Gema",
+    "website": "https://github.com/Fenix-ERP/l10n-ecuador",
+    "license": "OPL-1",
+    "data": [
+        "data/sequence.xml",
+        "views/account_credit_note.xml",
+        "views/account_move_doc_e_views.xml",
+        "security/ir.model.access.csv",
+        "views/gema_api.xml",
+        "views/res_company_view.xml",
+        "wizards/cancel_invoice_view.xml",
+        "wizards/ride_wizard.xml",
+        "views/res_config_settings.xml",
+    ],
+}

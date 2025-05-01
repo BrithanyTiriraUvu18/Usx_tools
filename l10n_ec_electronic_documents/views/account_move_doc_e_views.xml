@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+        <!-- Tree view -->
+        <record id="view_document_electronic_tree" model="ir.ui.view">
+            <field name="name">document.electronic.tree</field>
+            <field name="model">account.move</field>
+            <field name="arch" type="xml">
+                <tree
+                edit="false"
+                create="0"
+                import="0"
+                sample="1"
+                js_class="account_tree"
+                editable="bottom"
+                default_order="name desc"
+            >
+                    <field name="name" decoration-bf="1" />
+                    <field name="partner_id" invisible="1" />
+                    <field
+                    name="invoice_partner_display_name"
+                    invisible="context.get('default_move_type') not in ('in_invoice', 'in_refund','in_receipt')"
+                    groups="base.group_user"
+                    string="Vendedor"
+                />
+                    <field
+                    name="invoice_date_due"
+                    widget="remaining_days"
+                    optional="hide"
+                    invisible="context.get('payment_state') in ('paid', 'in_payment', 'reversed')"
+                />
+                    <field
+                    name="invoice_origin"
+                    optional="hide"
+                    string="Documento Fuente"
+                />
+                    <field
+                    name="payment_reference"
+                    optional="hide"
+                    invisible="context.get('default_move_type') in ('out_invoice', 'out_refund','out_receipt')"
+                />
+                    <field name="ref" optional="hide" />
+                    <field
+                    name="invoice_user_id"
+                    optional="hide"
+                    invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund','out_receipt')"
+                    string="Comercial"
+                    widget="many2one_avatar_user"
+                />
+                    <field name="company_id" />
+                    <field name="attempts" string="Intentos" optional="show" />
+                    <field
+                    name="amount_untaxed_signed"
+                    string="Impuestos Excluidos"
+                    sum="Total"
+                    optional="show"
+                />
+                    <field
+                    name="amount_tax_signed"
+                    string="Impuesto"
+                    sum="Total"
+                    optional="hide"
+                />
+                    <field
+                    name="amount_total_signed"
+                    string="Total"
+                    sum="Total"
+                    decoration-bf="1"
+                    optional="show"
+                />
+                    <field
+                    name="amount_residual_signed"
+                    string="Importe Adeudado"
+                    sum="Amount Due"
+                    optional="hide"
+                />
+                    <field
+                    name="state"
+                    widget="badge"
+                    decoration-success="state == 'posted'"
+                    decoration-info="state == 'draft'"
+                    optional="show"
+                />
+                    <field
+                    name="payment_state"
+                    widget="badge"
+                    decoration-danger="payment_state == 'not_paid'"
+                    decoration-warning="payment_state in ('partial', 'in_payment')"
+                    decoration-success="payment_state in ('paid', 'reversed')"
+                    invisible="payment_state == 'invoicing_legacy'"
+                />
+                    <field name="invoice_date" />
+                    <field name="state_send_document" string="Estado Factura" />
+                    <field name="access_key_label" optional="hide" />
+                    <field name="info_message" optional="show" />
+                    <field name="date_authorized" optional="hide" />
+                    <field
+                    name="check_progress"
+                    optional="show"
+                    readonly="1"
+                    widget="progressbar"
+                />
+                    <field name="is_move_sent" string="Email Enviado" readonly="1" />
+                    <field name="currency_id" invisible="1" />
+                    <field name="company_currency_id" invisible="1" />
+                    <field
+                    name="move_type"
+                    invisible="context.get('default_move_type', True)"
+                />
+
+                </tree>
+            </field>
+        </record>
+
+        <!-- Menu Button -->
+        <record id="action_invoice_tree" model="ir.actions.act_window">
+            <field name="name">Factura Electrónica</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('move_type', '=', 'out_invoice')]</field>
+            <field name="context">{'default_move_type': 'out_invoice'}</field>
+            <field name="view_id" ref="view_document_electronic_tree" />
+        </record>
+
+        <record id="action_out_refund_tree" model="ir.actions.act_window">
+            <field name="name">Nota de crédito</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('move_type', '=', 'out_refund')]</field>
+            <field name="context">{'move_type': 'out_refund'}</field>
+            <field name="view_id" ref="view_document_electronic_tree" />
+        </record>
+
+        <record id="action_liq_purchase_tree" model="ir.actions.act_window">
+            <field name="name">Liquidación de compras</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('doc_type', '=', 'liq_purchase')]</field>
+            <field name="context">{'default_doc_type': 'liq_purchase'}</field>
+            <field name="view_id" ref="view_document_electronic_tree" />
+        </record>
+
+        <!-- Menu items-->
+        <menuitem
+        id="action_menu_invoice"
+        parent="account.menu_finance"
+        name="Documentos Electrónicos"
+        sequence="5"
+    />
+        <menuitem
+        id="invoice_menu"
+        name="Factura Electrónica"
+        parent="action_menu_invoice"
+        action="action_invoice_tree"
+        sequence="1"
+    />
+        <menuitem
+        id="out_refund_menu"
+        name="Nota de crédito"
+        parent="action_menu_invoice"
+        action="action_out_refund_tree"
+        sequence="2"
+    />
+
+        <menuitem
+        id="liq_pur_menu"
+        name="Liquidación de compras"
+        parent="action_menu_invoice"
+        action="action_liq_purchase_tree"
+        sequence="4"
+    />
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ride_wizard,access_ride_wizard,model_ride_wizard,,1,1,1,1
+access_account_info_additional,access_account_info_additional,model_account_info_additional,,1,1,1,1
+access_cancel_invoice,access_cancel_invoice,model_cancel_invoice_wizard,account.group_account_manager,1,1,1,1

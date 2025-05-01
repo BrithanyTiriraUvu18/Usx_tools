@@ -1,0 +1,428 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+        <record id="tax_tag_ice_3011" model="account.account.tag">
+            <field name="name">3011</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3021" model="account.account.tag">
+            <field name="name">3021</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3023" model="account.account.tag">
+            <field name="name">3023</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3031" model="account.account.tag">
+            <field name="name">3031</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3041" model="account.account.tag">
+            <field name="name">3041</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <!-- <record id="tax_tag_ice_3073" model="account.account.tag">
+            <field name="name">3021</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record> -->
+
+        <record id="tax_tag_ice_3075" model="account.account.tag">
+            <field name="name">3075</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3077" model="account.account.tag">
+            <field name="name">3077</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3078" model="account.account.tag">
+            <field name="name">3078</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3079" model="account.account.tag">
+            <field name="name">3079</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3080" model="account.account.tag">
+            <field name="name">3080</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3081" model="account.account.tag">
+            <field name="name">3081</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3092" model="account.account.tag">
+            <field name="name">3092</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3610" model="account.account.tag">
+            <field name="name">3610</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3620" model="account.account.tag">
+            <field name="name">3620</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3630" model="account.account.tag">
+            <field name="name">3630</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3640" model="account.account.tag">
+            <field name="name">3640</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3660" model="account.account.tag">
+            <field name="name">3660</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3093" model="account.account.tag">
+            <field name="name">3093</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3101" model="account.account.tag">
+            <field name="name">3101</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3053" model="account.account.tag">
+            <field name="name">3053</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3054" model="account.account.tag">
+            <field name="name">3054</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3111" model="account.account.tag">
+            <field name="name">3111</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3043" model="account.account.tag">
+            <field name="name">3043</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3033" model="account.account.tag">
+            <field name="name">3033</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3671" model="account.account.tag">
+            <field name="name">3671</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3684" model="account.account.tag">
+            <field name="name">3684</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3686" model="account.account.tag">
+            <field name="name">3686</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3688" model="account.account.tag">
+            <field name="name">3688</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3691" model="account.account.tag">
+            <field name="name">3691</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3692" model="account.account.tag">
+            <field name="name">3692</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3695" model="account.account.tag">
+            <field name="name">3695</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3696" model="account.account.tag">
+            <field name="name">3696</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3698" model="account.account.tag">
+            <field name="name">3698</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3682" model="account.account.tag">
+            <field name="name">3682</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3681" model="account.account.tag">
+            <field name="name">3681</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3680" model="account.account.tag">
+            <field name="name">3680</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3533" model="account.account.tag">
+            <field name="name">3533</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3541" model="account.account.tag">
+            <field name="name">3541</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3542" model="account.account.tag">
+            <field name="name">3542</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3543" model="account.account.tag">
+            <field name="name">3543</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3544" model="account.account.tag">
+            <field name="name">3544</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3581" model="account.account.tag">
+            <field name="name">3581</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3582" model="account.account.tag">
+            <field name="name">3582</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3710" model="account.account.tag">
+            <field name="name">3710</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3720" model="account.account.tag">
+            <field name="name">3720</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3730" model="account.account.tag">
+            <field name="name">3730</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3740" model="account.account.tag">
+            <field name="name">3740</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3871" model="account.account.tag">
+            <field name="name">3871</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3873" model="account.account.tag">
+            <field name="name">3873</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3874" model="account.account.tag">
+            <field name="name">3874</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3875" model="account.account.tag">
+            <field name="name">3875</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3876" model="account.account.tag">
+            <field name="name">3876</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3877" model="account.account.tag">
+            <field name="name">3877</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3878" model="account.account.tag">
+            <field name="name">3878</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3601" model="account.account.tag">
+            <field name="name">3601</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3552" model="account.account.tag">
+            <field name="name">3552</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3553" model="account.account.tag">
+            <field name="name">3553</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3602" model="account.account.tag">
+            <field name="name">3602</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3545" model="account.account.tag">
+            <field name="name">3545</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3532" model="account.account.tag">
+            <field name="name">3532</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+        <record id="tax_tag_ice_3771" model="account.account.tag">
+            <field name="name">3771</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3685" model="account.account.tag">
+            <field name="name">3685</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3687" model="account.account.tag">
+            <field name="name">3687</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3689" model="account.account.tag">
+            <field name="name">3689</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3690" model="account.account.tag">
+            <field name="name">3690</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3693" model="account.account.tag">
+            <field name="name">3693</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3694" model="account.account.tag">
+            <field name="name">3694</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3697" model="account.account.tag">
+            <field name="name">3697</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3699" model="account.account.tag">
+            <field name="name">3699</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+        <record id="tax_tag_ice_3683" model="account.account.tag">
+            <field name="name">3683</field>
+            <field name="applicability">taxes</field>
+            <field name="country_id" ref="base.ec" />
+        </record>
+
+</odoo>

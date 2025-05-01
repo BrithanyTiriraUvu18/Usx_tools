@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_wizard_pricelist" model="ir.actions.act_window">
+        <field name="name">Importar Lista de Precios</field>
+        <field name="res_model">wizard.pricelist</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_wizard_pricelist_form"/> 
+    </record>
+</odoo>

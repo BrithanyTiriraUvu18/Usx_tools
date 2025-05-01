@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+        <record id="account_sri_window_document_type" model="ir.actions.act_window">
+            <field name="name">Tipo Documento</field>
+            <field name="res_model">account.sri.charts</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','document_type')]</field>
+            <field name="context">{'default_type': 'document_type'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tipo Documento
+                </p>
+            </field>
+        </record>
+        <record
+        id="account_sri_window_identification_type"
+        model="ir.actions.act_window"
+    >
+            <field name="name"> Tipo Identificación</field>
+            <field name="res_model">account.sri.charts</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','identification_type')]</field>
+            <field name="context">{'default_type': 'identification_type'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tipo Identificación
+                </p>
+            </field>
+        </record>
+
+<!-- table 16 -->
+
+        <record id="account_sri_window_tax_code" model="ir.actions.act_window">
+            <field name="name">Código Fiscal</field>
+            <field name="res_model">account.sri.charts</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','tax_code')]</field>
+            <field name="context">{'default_type': 'tax_code'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Código Fiscal
+                </p>
+            </field>
+        </record>
+
+        <!-- table 17 -->
+
+        <record id="account_sri_window_vat_rate" model="ir.actions.act_window">
+            <field name="name">Tasa de IVA</field>
+            <field name="res_model">account.sri.charts</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','vat_rate')]</field>
+            <field name="context">{'default_type': 'vat_rate'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tasa de IVA
+                </p>
+            </field>
+        </record>
+
+         <!-- table 20 -->
+
+        <record id="account_sri_window_vat_withholding" model="ir.actions.act_window">
+            <field name="name">Retenciones del IVA</field>
+            <field name="res_model">account.sri.charts</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','vat_withholding')]</field>
+            <field name="context">{'default_type': 'vat_withholding'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Retenciones del IVA
+                </p>
+            </field>
+        </record>
+
+        <!-- table 24 -->
+
+        <record id="account_sri_window_payment_method" model="ir.actions.act_window">
+            <field name="name">Método de Pago</field>
+            <field name="res_model">account.sri.charts</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','payment_method')]</field>
+            <field name="context">{'default_type': 'payment_method'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Método de Pago
+                </p>
+            </field>
+        </record>
+
+        <!-- Table 20 -->
+        <record id="account_sri_window_tax_withholding" model="ir.actions.act_window">
+            <field name="name">Retención Fiscal</field>
+            <field name="res_model">account.sri.charts</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','tax_withholding')]</field>
+            <field name="context">{'default_type': 'tax_withholding'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Retención Fiscal
+                </p>
+            </field>
+        </record>
+
+
+
+        <!-- MENU -->
+        <menuitem
+        id="menu_account_sri"
+        name="Sri"
+        parent="account.menu_finance"
+        sequence="10"
+    />
+        <menuitem
+        id="submenu_account_sri"
+        name="Tipos"
+        parent="menu_account_sri"
+        sequence="1"
+    />
+        <menuitem
+        id="submenu_account_sri_document_type"
+        name="Tipo de Documento"
+        parent="submenu_account_sri"
+        sequence="2"
+        action="account_sri_window_document_type"
+    />
+        <menuitem
+        id="submenu_account_sri_identification_type"
+        name="Tipo de Identificación"
+        parent="submenu_account_sri"
+        sequence="3"
+        action="account_sri_window_identification_type"
+    />
+
+                  <!-- table 16 -->
+         <menuitem
+        id="submenu_account_sri_tax_code"
+        name="Código Fiscal"
+        parent="submenu_account_sri"
+        sequence="4"
+        action="account_sri_window_tax_code"
+    />
+
+                       <!-- table 17 -->
+         <menuitem
+        id="submenu_account_sri_vat_rate"
+        name="Tipo de IVA"
+        parent="submenu_account_sri"
+        sequence="5"
+        action="account_sri_window_vat_rate"
+    />
+
+                  <!-- table 20 -->
+         <menuitem
+        id="submenu_account_sri_vat_withholding"
+        name="Retención del IVA"
+        parent="submenu_account_sri"
+        sequence="6"
+        action="account_sri_window_vat_withholding"
+    />
+
+                  <!-- table 24 -->
+         <menuitem
+        id="submenu_account_sri_payment_method"
+        name="Método Pago"
+        parent="submenu_account_sri"
+        sequence="7"
+        action="account_sri_window_payment_method"
+    />
+
+                           <!-- table 19 -->
+         <menuitem
+        id="account_sri_form_tax_withholding"
+        name="Retención fiscal"
+        parent="submenu_account_sri"
+        sequence="8"
+        action="account_sri_window_tax_withholding"
+    />
+
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+        <record id="sequence_edocuments_invoice" model="ir.sequence">
+            <field name="name">Factura Electrónica (venta)</field>
+            <field eval="9" name="padding" />
+            <field name="code">edocuments_invoice.code</field>
+            <field name="number_next_actual">1</field>
+            <field name="prefix">001-001-</field>
+            <field name="is_edocument">1</field>
+
+        </record>
+        <record id="sequence_edocuments_credit_note" model="ir.sequence">
+            <field name="name">Nota de Crédito Electrónica (venta)</field>
+            <field eval="9" name="padding" />
+            <field name="code">edocuments_cred_not.code</field>
+            <field name="number_next_actual">1</field>
+            <field name="prefix">001-001-</field>
+            <field name="is_edocument">1</field>
+        </record>
+        <record id="sequence_edocuments_referral_guide" model="ir.sequence">
+            <field name="name">Guía de Remisión Electrónica</field>
+            <field eval="9" name="padding" />
+            <field name="code">edocuments_ref_gui.code</field>
+            <field name="number_next_actual">1</field>
+            <field name="prefix">001-001-</field>
+            <field name="is_edocument">1</field>
+        </record>
+
+        <!-- Purchase -->
+        <record id="sequence_edocuments_invoice_pur" model="ir.sequence">
+            <field name="name">Factura Electrónica (compra)</field>
+            <field eval="9" name="padding" />
+            <field name="code">edocuments_invoice_purchase.code</field>
+            <field name="number_next_actual">1</field>
+            <field name="prefix">FC-</field>
+            <field name="is_edocument">1</field>
+
+        </record>
+        <record id="sequence_edocuments_cn_purchase" model="ir.sequence">
+            <field name="name">Nota de Crédito Electrónica (compra)</field>
+            <field eval="9" name="padding" />
+            <field name="code">edocuments_cred_not_purchase.code</field>
+            <field name="number_next_actual">1</field>
+            <field name="prefix">NC-</field>
+            <field name="is_edocument">1</field>
+        </record>
+        <record id="sequence_edocuments_clearance" model="ir.sequence">
+            <field name="name">Liquidación de Compra Electrónica</field>
+            <field eval="9" name="padding" />
+            <field name="code">edocuments_clearance_purchase.code</field>
+            <field name="number_next_actual">1</field>
+            <field name="prefix">001-001-</field>
+            <field name="is_edocument">1</field>
+        </record>
+        <record id="sequence_edocuments_withholding" model="ir.sequence">
+            <field name="name">Retención Electrónica</field>
+            <field eval="9" name="padding" />
+            <field name="code">edocuments_withholding_purchase.code</field>
+            <field name="number_next_actual">1</field>
+            <field name="prefix">001-001-</field>
+            <field name="is_edocument">1</field>
+        </record>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+        <record id="l10n_ec_fenixerp_journal_petty_cash" model="account.journal">
+            <field name="name">Efectivo chica</field>
+            <field name="code">CSHC</field>
+            <field name="type">cash</field>
+            <!-- <field name="default_account_id" ref="l10n_ec_sri_charts.ec101010102"/>
+            <field name="suspense_account_id" ref="l10n_ec_sri_charts.ec201030102"/>
+            <field name="suspense_account_id" ref="l10n_ec_sri_charts.ec201030102"/>
+            <field name="payment_debit_account_id" ref="l10n_ec_sri_charts.ec101010107"/>
+            <field name="payment_credit_account_id" ref="l10n_ec_sri_charts.ec101010108"/> -->
+        </record>
+
+</odoo>

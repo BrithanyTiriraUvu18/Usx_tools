@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="save_ride_wizard_view_done" model="ir.ui.view">
+        <field name="name">save.ride.wizard.form</field>
+        <field name="model">ride.wizard</field>
+        <field name="arch" type="xml">
+            <form string="File download">
+                <group cols="2">
+                    <div>
+                        <field name="ride_name" invisible="1" />
+                        <label for="ride_name" string="Download RIDE: " />
+                        <field name="ride" filename="ride_name" />
+                    </div>
+                </group>
+                <footer>
+                <button special="cancel" string="Close" type="object" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

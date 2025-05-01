@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_res_partner_identification_form" model="ir.ui.view">
+        <field name="name">res.partner.identification.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_latam_base.view_partner_latam_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='l10n_latam_identification_type_id']"
+                position='attributes'
+            >
+                <attribute name='invisible'>1</attribute>
+            </xpath>
+            <xpath expr="//div/field[@name='vat']" position='attributes'>
+                <attribute name='readonly'>1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='type']" position='before'>
+                <field name="type_identifier" />
+                <field name="identifier" />
+                <field name="is_end_consumer" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='email']" position='attributes'>
+               <attribute name="invisible">is_end_consumer ==  'False'</attribute>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="view_res_partner_cedruc_form" model="ir.ui.view">
+        <field name="name">res.partner.cedruc.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="trade_name" placeholder="Trade name">
+                <attribute name="invisible">[['is_company','=', False]]</attribute>
+            </field>
+            </field>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="placeholder">Company name</attribute>
+            </xpath>
+
+<!--            <xpath expr="//page[@name='internal_notes']" position="after">-->
+<!--                <page string="Electronic Document" name="elec_doc_partner">-->
+<!--                    <group name="documents">-->
+<!--                        <field name="point_emission"/>-->
+<!--                    </group>-->
+
+<!--                </page>-->
+
+
+<!--            </xpath>-->
+        </field>
+        <!--        new page-->
+
+    </record>
+
+
+</odoo>

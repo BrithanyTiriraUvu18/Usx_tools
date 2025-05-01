@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="import_dashboard_kanban_view_inherit_pricelist" model="ir.ui.view">
+        <field name="name">import.dashboard.kanban.import.pricelist.inherit</field>
+        <field name="model">import.dashboard</field>
+        <field name="inherit_id" ref="import_dashboard.view_import_dashboard_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_kanban_content']" position="after">
+                <div class="oe_kanban_content" style="margin-left: 20px; width: 250px;">
+                    <div class="oe_kanban_title d-flex justify-content-between align-items-center" style="padding: 8px;">
+                        <span class="o_label" style="font-size: 20px;">Lista de Precios</span>
+                        <i class="fa fa-list-alt" style="color: #4a90e2; font-size: 36px; margin-left: 8px;"></i>
+                    </div>
+                    <button class="btn btn-sm btn-primary"
+                            style="margin-top: 5px; width: 100%;"
+                            type="action"
+                            name="%(import_pricelist.action_wizard_pricelist)d">
+                        Importar
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

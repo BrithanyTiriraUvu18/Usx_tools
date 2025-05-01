@@ -1,0 +1,30 @@
+<odoo>
+
+    <record model="ir.ui.view" id="cancel_invoice">
+      <field name="name">cancel.invoice</field>
+      <field name="model">cancel.invoice.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Cancel Inovice">
+          <group>
+              <group>
+                <field name="reason" />
+              </group>
+          </group>
+          <footer>
+            <button class="btn btn-primary" type="object" name="cancel_document">
+                <span>Cancel Document</span>
+            </button>
+            <button special="cancel" string="Cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="cancel_invoice_action">
+      <field name="name">Cancel Invoice</field>
+      <field name="res_model">cancel.invoice.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+</odoo>
