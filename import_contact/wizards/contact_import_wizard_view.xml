@@ -3,12 +3,12 @@
         <field name="name">import.contact.wizard.form</field>
         <field name="model">import.contact.wizard</field>
         <field name="arch" type="xml">
-            <form string="Importar Contactos">
+            <form string="Import Contacts">
 
                 <sheet>
                     <group>
                         
-                        <label for="file" class="oe_form_label">Archivo</label>
+                        <label for="file" class="oe_form_label">File</label>
                         <div class="o_field_widget o_input_widget">
                             <field name="file" filename="file_name" widget="binary" options="{'no_open': True}" class="oe_form_field_input" required="false"/>
                         </div>
@@ -17,10 +17,10 @@
 
                
                 <footer>
-                    <button name="action_import" type="object" string="Importar" class="btn-primary"/>
+                    <button name="action_import" type="object" string="Import" class="btn-primary"/>
                     <button name="action_test" type="object" string="Test" class="btn-secondary"/>
-                    <button name="action_export_template" type="object" string="Exportar Plantilla" class="btn-secondary"/>
-                    <button string="Cancelar" special="cancel" class="btn-secondary"/>
+                    <button name="action_export_template" type="object" string="Export Template" class="btn-secondary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
                 </footer>
             </form>
         </field>
