@@ -181,8 +181,8 @@ class ImportContactWizard(models.TransientModel):
             mobile_str = str(mobile or '').strip()
             if mobile_str:
                 mobile_clean = mobile_str.replace(" ", "")
-                if not (mobile_clean.startswith('+593') or mobile_clean.startswith('09')):
-                    errors.append(f"Row {index}: Mobile must start with '+593' or '09'.")
+                if not (mobile_clean.startswith('+593') or mobile_clean.startswith('09') or mobile_clean.startswith('02250')):
+                    errors.append(f"Row {index}: Mobile must start with '+593', '09', or '02250'.")
                 elif not (10 <= len(mobile_clean) <= 20):
                     errors.append(f"Row {index}: Mobile length must be 10–20 digits.")
 
