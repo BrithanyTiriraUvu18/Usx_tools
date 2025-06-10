@@ -313,11 +313,11 @@ class ImportContactWizard(models.TransientModel):
             'url': f'/web/content/{attachment.id}?download=true',
             'target': 'self',
         }
-    
+        
 
     def action_import(self):
         if not self.file:
-            raise UserError("You must upload an XLSX file.")
+            raise UserError("The uploaded file is missing. Please upload a valid XLSX file.")
 
         try:
             file_content = base64.b64decode(self.file)
