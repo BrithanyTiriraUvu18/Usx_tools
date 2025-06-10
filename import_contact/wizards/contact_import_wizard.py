@@ -108,7 +108,6 @@ class ImportContactWizard(models.TransientModel):
         }
 
     def validate_data(self, data):
-    def validate_data(self, data):
         errors = []
         seen_names = set()
         seen_trade_names = set()
@@ -314,7 +313,7 @@ class ImportContactWizard(models.TransientModel):
             'url': f'/web/content/{attachment.id}?download=true',
             'target': 'self',
         }
-        }
+    
 
     def action_import(self):
         if not self.file:
