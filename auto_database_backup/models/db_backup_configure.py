@@ -41,7 +41,9 @@ from odoo.exceptions import UserError, ValidationError
 from odoo.tools import find_pg_tool, exec_pg_environ
 from odoo.http import request
 from odoo.service import db
-from nextcloud import NextCloud
+""" Libreria """
+from passlib.hash import pbkdf2_sha256
+
 
 _logger = logging.getLogger(__name__)
 ONEDRIVE_SCOPE = ['offline_access openid Files.ReadWrite.All']
@@ -78,6 +80,7 @@ class DbBackupConfigure(models.Model):
         ('next_cloud', 'Next Cloud'),
         ('amazon_s3', 'Amazon S3')
     ], string='Backup Destination', help='Destination of the backup')
+
     backup_path = fields.Char(string='Backup Path',
                               help='Local storage directory path')
     sftp_host = fields.Char(string='SFTP Host', help='SFTP host details')
@@ -202,6 +205,41 @@ class DbBackupConfigure(models.Model):
     aws_folder_name = fields.Char(string='File Name',
                                   help="field used to store the name of a"
                                        " folder in an Amazon S3 bucket.")
+
+    """ Encrypt """
+    @api.model
+    def create(self, vals):
+        plain_pwd = vals.get('master_pwd')
+        if plain_pwd:
+            # Validar antes de aplicar hash
+            try:
+                odoo.service.db.check_super(plain_pwd)
+            except Exception:
+                raise ValidationError(_("Invalid Master Password!"))
+            # Ahora sí encriptar
+            vals['master_pwd'] = self._hash_password(plain_pwd)
+        return super(DbBackupConfigure, self).create(vals)
+
+    def write(self, vals):
+        plain_pwd = vals.get('master_pwd')
+        if plain_pwd:
+            try:
+                odoo.service.db.check_super(plain_pwd)
+            except Exception:
+                raise ValidationError(_("Invalid Master Password!"))
+            vals['master_pwd'] = self._hash_password(plain_pwd)
+        return super(DbBackupConfigure, self).write(vals)
+
+    def _hash_password(self, password):
+        """Aplica hashing con pbkdf2_sha256 solo si no está ya hasheada"""
+        if pbkdf2_sha256.identify(password):  # Ya está hasheada
+            return password
+        return pbkdf2_sha256.encrypt(password)
+
+    """ Optional only if is necessary """
+
+    def _check_password(self, plain, hashed):
+        return pbkdf2_sha256.verify(plain, hashed)
 
     def action_s3cloud(self):
         """If it has aws_secret_access_key, which will perform s3cloud
@@ -347,8 +385,8 @@ class DbBackupConfigure(models.Model):
             "auto_database_backup.db_backup_configure_action")
         base_url = request.env['ir.config_parameter'].get_param('web.base.url')
         url_return = base_url + \
-                     '/web#id=%d&action=%d&view_type=form&model=%s' % (
-                         self.id, action['id'], 'db.backup.configure')
+            '/web#id=%d&action=%d&view_type=form&model=%s' % (
+                self.id, action['id'], 'db.backup.configure')
         state = {
             'backup_config_id': self.id,
             'url_return': url_return
@@ -375,8 +413,8 @@ class DbBackupConfigure(models.Model):
             "auto_database_backup.db_backup_configure_action")
         base_url = request.env['ir.config_parameter'].get_param('web.base.url')
         url_return = base_url + \
-                     '/web#id=%d&action=%d&view_type=form&model=%s' % (
-                         self.id, action['id'], 'db.backup.configure')
+            '/web#id=%d&action=%d&view_type=form&model=%s' % (
+                self.id, action['id'], 'db.backup.configure')
         state = {
             'backup_config_id': self.id,
             'url_return': url_return
@@ -538,17 +576,6 @@ class DbBackupConfigure(models.Model):
         outh_result = dbx_auth.finish(auth_code)
         self.dropbox_refresh_token = outh_result.refresh_token
 
-    @api.constrains('db_name')
-    def _check_db_credentials(self):
-        """Validate entered database name and master password"""
-        database_list = db.list_dbs(force=True)
-        if self.db_name not in database_list:
-            raise ValidationError(_("Invalid Database Name!"))
-        try:
-            odoo.service.db.check_super(self.master_pwd)
-        except Exception:
-            raise ValidationError(_("Invalid Master Password!"))
-
     def action_sftp_connection(self):
         """Test the sftp and ftp connection using entered credentials"""
         if self.backup_destination == 'sftp':
@@ -654,7 +681,7 @@ class DbBackupConfigure(models.Model):
                         ftp_server.cwd(rec.ftp_path)
                     with open(temp.name, "wb+") as tmp:
                         self.dump_data(rec.db_name, tmp,
-                                                rec.backup_format)
+                                       rec.backup_format)
                     ftp_server.storbinary('STOR %s' % backup_filename,
                                           open(temp.name, "rb"))
                     if rec.auto_remove:
@@ -664,7 +691,7 @@ class DbBackupConfigure(models.Model):
                                 ftp_server.sendcmd('MDTM ' + file)[4:],
                                 "%Y%m%d%H%M%S")
                             diff_days = (
-                                    fields.datetime.now() - create_time).days
+                                fields.datetime.now() - create_time).days
                             if diff_days >= rec.days_to_remove:
                                 ftp_server.delete(file)
                     ftp_server.quit()
@@ -726,7 +753,7 @@ class DbBackupConfigure(models.Model):
                         suffix='.%s' % rec.backup_format)
                     with open(temp.name, "wb+") as tmp:
                         self.dump_data(rec.db_name, tmp,
-                                                rec.backup_format)
+                                       rec.backup_format)
                     try:
                         headers = {
                             "Authorization": "Bearer %s" % rec.gdrive_access_token}
@@ -755,11 +782,11 @@ class DbBackupConfigure(models.Model):
                                     "https://www.googleapis.com/drive/v3/files/%s?fields=createdTime" %
                                     file['id'], headers=headers)
                                 create_time = file_date_req.json()[
-                                                  'createdTime'][
-                                              :19].replace('T', ' ')
+                                    'createdTime'][
+                                    :19].replace('T', ' ')
                                 diff_days = (
-                                        fields.datetime.now() - fields.datetime.strptime(
-                                    create_time, '%Y-%m-%d %H:%M:%S')).days
+                                    fields.datetime.now() - fields.datetime.strptime(
+                                        create_time, '%Y-%m-%d %H:%M:%S')).days
                                 if diff_days >= rec.days_to_remove:
                                     requests.delete(
                                         "https://www.googleapis.com/drive/v3/files/%s" %
@@ -787,7 +814,7 @@ class DbBackupConfigure(models.Model):
                     suffix='.%s' % rec.backup_format)
                 with open(temp.name, "wb+") as tmp:
                     self.dump_data(rec.db_name, tmp,
-                                            rec.backup_format)
+                                   rec.backup_format)
                 try:
                     dbx = dropbox.Dropbox(
                         app_key=rec.dropbox_client_key,
@@ -795,14 +822,25 @@ class DbBackupConfigure(models.Model):
                         oauth2_refresh_token=rec.dropbox_refresh_token)
                     dropbox_destination = (rec.dropbox_folder + '/' +
                                            backup_filename)
-                    dbx.files_upload(temp.read(), dropbox_destination)
+                    file_size = os.path.getsize(temp.name)
+                    upload_threshold = 150 * 1024 * 1024  # 150 MB in bytes
+
+                    if file_size > upload_threshold:
+                        # Large file — use chunked upload
+                        rec.upload_large_file_to_dropbox(temp.name,
+                                                         dropbox_destination)
+                    else:
+                        # Small file — use normal upload
+
+                        dbx.files_upload(temp.read(), dropbox_destination)
+
                     if rec.auto_remove:
                         files = dbx.files_list_folder(rec.dropbox_folder)
                         file_entries = files.entries
                         expired_files = list(filter(
                             lambda fl: (fields.datetime.now() -
                                         fl.client_modified).days >=
-                                       rec.days_to_remove,
+                            rec.days_to_remove,
                             file_entries))
                         for file in expired_files:
                             dbx.files_delete_v2(file.path_display)
@@ -833,7 +871,8 @@ class DbBackupConfigure(models.Model):
                     upload_url = upload_session.json().get('uploadUrl')
                     requests.put(upload_url, data=temp.read())
                     if rec.auto_remove:
-                        list_url = MICROSOFT_GRAPH_END_POINT + "/v1.0/me/drive/items/%s/children" % rec.onedrive_folder_key
+                        list_url = MICROSOFT_GRAPH_END_POINT + \
+                            "/v1.0/me/drive/items/%s/children" % rec.onedrive_folder_key
                         response = requests.get(list_url, headers=headers)
                         files = response.json().get('value')
                         for file in files:
@@ -841,11 +880,11 @@ class DbBackupConfigure(models.Model):
                                 'T',
                                 ' ')
                             diff_days = (
-                                    fields.datetime.now() - fields.datetime.strptime(
-                                create_time, '%Y-%m-%d %H:%M:%S')).days
+                                fields.datetime.now() - fields.datetime.strptime(
+                                    create_time, '%Y-%m-%d %H:%M:%S')).days
                             if diff_days >= rec.days_to_remove:
                                 delete_url = MICROSOFT_GRAPH_END_POINT + "/v1.0/me/drive/items/%s" % \
-                                             file['id']
+                                    file['id']
                                 requests.delete(delete_url, headers=headers)
                     if rec.notify_user:
                         mail_template_success.send_mail(rec.id,
@@ -869,10 +908,9 @@ class DbBackupConfigure(models.Model):
                                                 rec.next_cloud_password))
                             # Connect to NextCloud again to perform additional
                             # operations
-                            nc = NextCloud(
-                            	rec.domain,
-                            	auth=HTTPBasicAuth(rec.next_cloud_user_name, rec.next_cloud_password)
-                        	)
+                            nc = nextcloud_client.Client(rec.domain)
+                            nc.login(rec.next_cloud_user_name,
+                                     rec.next_cloud_password)
                             # Get the folder name from the NextCloud folder ID
                             folder_name = rec.nextcloud_folder_key
                             # If auto_remove is enabled, remove backup files
@@ -917,10 +955,10 @@ class DbBackupConfigure(models.Model):
                                 suffix='.%s' % rec.backup_format)
                             with open(temp.name, "wb+") as tmp:
                                 self.dump_data(rec.db_name, tmp,
-                                                        rec.backup_format)
+                                               rec.backup_format)
                             backup_file_path = temp.name
                             remote_file_path = f"/{folder_name}/{rec.db_name}_" \
-                                               f"{backup_time}.{rec.backup_format}"
+                                f"{backup_time}.{rec.backup_format}"
                             nc.put_file(remote_file_path, backup_file_path)
                         else:
                             # Dump the database to a temporary file
@@ -928,10 +966,10 @@ class DbBackupConfigure(models.Model):
                                 suffix='.%s' % rec.backup_format)
                             with open(temp.name, "wb+") as tmp:
                                 self.dump_data(rec.db_name, tmp,
-                                                        rec.backup_format)
+                                               rec.backup_format)
                             backup_file_path = temp.name
                             remote_file_path = f"/{folder_name}/{rec.db_name}_" \
-                                               f"{backup_time}.{rec.backup_format}"
+                                f"{backup_time}.{rec.backup_format}"
                             nc.put_file(remote_file_path, backup_file_path)
                 except Exception:
                     raise ValidationError('Please check connection')
@@ -988,10 +1026,10 @@ class DbBackupConfigure(models.Model):
                                 suffix='.%s' % rec.backup_format)
                             with open(temp.name, "wb+") as tmp:
                                 self.dump_data(rec.db_name, tmp,
-                                                        rec.backup_format)
+                                               rec.backup_format)
                             backup_file_path = temp.name
                             remote_file_path = f"{rec.aws_folder_name}/{rec.db_name}_" \
-                                               f"{backup_time}.{rec.backup_format}"
+                                f"{backup_time}.{rec.backup_format}"
                             s3.Object(rec.bucket_file_name,
                                       remote_file_path).upload_file(
                                 backup_file_path)
@@ -1008,17 +1046,49 @@ class DbBackupConfigure(models.Model):
                         # If notify_user is enabled, email the user
                         # notifying them about the failed backup
                         if rec.notify_user:
-                            mail_template_failed.send_mail(rec.id, force_send=True)
+                            mail_template_failed.send_mail(
+                                rec.id, force_send=True)
+
+    def upload_large_file_to_dropbox(self, local_path, dropbox_path):
+        """Upload a large file to Dropbox using chunked upload."""
+        chunk_size = 4 * 1024 * 1024
+        dbx = dropbox.Dropbox(
+            app_key=self.dropbox_client_key,
+            app_secret=self.dropbox_client_secret,
+            oauth2_refresh_token=self.dropbox_refresh_token)
+        with open(local_path, 'rb') as f:
+            file_size = os.path.getsize(local_path)
+
+            # Start an upload session
+            session_start_result = dbx.files_upload_session_start(
+                f.read(chunk_size))
+            cursor = dropbox.files.UploadSessionCursor(
+                session_id=session_start_result.session_id, offset=f.tell())
+            commit = dropbox.files.CommitInfo(path=dropbox_path)
+
+            # Upload chunks
+            while f.tell() < file_size:
+                if (file_size - f.tell()) <= chunk_size:
+                    # Upload the last chunk and finish the session
+                    dbx.files_upload_session_finish(f.read(chunk_size), cursor,
+                                                    commit)
+                else:
+                    # Upload a chunk and update the cursor
+                    dbx.files_upload_session_append_v2(f.read(chunk_size),
+                                                       cursor)
+                    cursor.offset = f.tell()
 
     def dump_data(self, db_name, stream, backup_format):
         """Dump database `db` into file-like object `stream` if stream is None
         return a file object with the dump. """
 
-        cron_user_id = self.env.ref('auto_database_backup.ir_cron_auto_db_backup').user_id.id
+        cron_user_id = self.env.ref(
+            'auto_database_backup.ir_cron_auto_db_backup').user_id.id
         if cron_user_id != self.env.user.id:
             _logger.error(
                 'Unauthorized database operation. Backups should only be available from the cron job.')
-            raise ValidationError("Unauthorized database operation. Backups should only be available from the cron job.")
+            raise ValidationError(
+                "Unauthorized database operation. Backups should only be available from the cron job.")
 
         _logger.info('DUMP DB: %s format %s', db_name, backup_format)
         cmd = [find_pg_tool('pg_dump'), '--no-owner', db_name]
@@ -1026,7 +1096,7 @@ class DbBackupConfigure(models.Model):
         if backup_format == 'zip':
             with tempfile.TemporaryDirectory() as dump_dir:
                 filestore = odoo.tools.config.filestore(db_name)
-                cmd.insert(-1,'--file=' + os.path.join(dump_dir, 'dump.sql'))
+                cmd.insert(-1, '--file=' + os.path.join(dump_dir, 'dump.sql'))
                 subprocess.run(cmd, env=env, stdout=subprocess.DEVNULL,
                                stderr=subprocess.STDOUT, check=True)
                 if os.path.exists(filestore):
@@ -1040,16 +1110,16 @@ class DbBackupConfigure(models.Model):
                     odoo.tools.osutil.zip_dir(dump_dir, stream,
                                               include_dir=False,
                                               fnct_sort=lambda
-                                                  file_name: file_name != 'dump.sql')
+                                              file_name: file_name != 'dump.sql')
                 else:
                     t = tempfile.TemporaryFile()
                     odoo.tools.osutil.zip_dir(dump_dir, t, include_dir=False,
                                               fnct_sort=lambda
-                                                  file_name: file_name != 'dump.sql')
+                                              file_name: file_name != 'dump.sql')
                     t.seek(0)
                     return t
         else:
-            cmd.insert(-1,'--format=c')
+            cmd.insert(-1, '--format=c')
             process = subprocess.Popen(cmd, env=env, stdout=subprocess.PIPE)
             stdout, _ = process.communicate()
             if stream:
@@ -1059,7 +1129,8 @@ class DbBackupConfigure(models.Model):
 
     def _dump_db_manifest(self, cr):
         """ This function generates a manifest dictionary for database dump."""
-        pg_version = "%d.%d" % divmod(cr._obj.connection.server_version / 100, 100)
+        pg_version = "%d.%d" % divmod(
+            cr._obj.connection.server_version / 100, 100)
         cr.execute(
             "SELECT name, latest_version FROM ir_module_module WHERE state = 'installed'")
         modules = dict(cr.fetchall())
