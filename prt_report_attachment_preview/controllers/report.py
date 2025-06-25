@@ -19,6 +19,8 @@
 
 import json
 import re
+import io
+from datetime import datetime
 from email.utils import encode_rfc2231
 from werkzeug import urls
 
@@ -27,10 +29,9 @@ from odoo.http import request
 from odoo.tools.safe_eval import safe_eval, time
 from odoo.addons.web.controllers.report import ReportController
 
-from PyPDF2 import PdfMerger
-import io
+import pikepdf
 
- 
+
 class CxReportController(ReportController):
 
     def _get_extra_context_for_single_record(self, report_name, ignore_expr=None):
@@ -46,29 +47,31 @@ class CxReportController(ReportController):
         return extra_ctx
 
     def _compose_report_file_name(self, docids, report):
-        report_name = "report"
-        if docids:
-            records = request.env[report.model].browse(docids)
-            record_count = len(docids)
-            if record_count == 1 and report.sudo().print_report_name:
-                print_report_name = report.sudo().print_report_name
-                extra_ctx = self._get_extra_context_for_single_record(
-                    print_report_name,
-                    ignore_expr=["object", "time"],
-                )
-                report_name = safe_eval(
-                    print_report_name,
-                    {
-                        "object": records,
-                        "time": time,
-                        **extra_ctx,
-                    },
-                )
-            else:
-                report_name = f"{report.name} x{record_count}"
+        # Usar el modelo para identificar el tipo de documento
+        model_name = report.model or "documentos"
+        nombre_modelo = {
+            "sale.order": "cotizacion",
+            "account.move": "factura",
+            "purchase.order": "orden_compra",
+        }.get(model_name, model_name.replace('.', '_'))
+
+        fecha = datetime.today().strftime("%d-%m-%Y")
+        if len(docids) == 1:
+            return f"{nombre_modelo}-{fecha}"
         else:
-            report_name = report.name
-        return report_name
+            return f"reporte-{fecha}"
+
+    def _parse_docids(self, docids_str):
+        """Parse docids from either comma-separated IDs or a formatted string"""
+        try:
+            # Primero intentamos interpretarlo como lista de IDs
+            return [int(i) for i in docids_str.split(",")]
+        except ValueError:
+            # Si falla, asumimos que es un formato legible y obtenemos los IDs del contexto
+            context = dict(request.env.context)
+            if context.get('active_ids'):
+                return context['active_ids']
+            return []
 
     @http.route(
         [
@@ -89,7 +92,7 @@ class CxReportController(ReportController):
         report = report_obj._get_report_from_name(reportname)
         context = dict(request.env.context)
 
-        # Extrae opciones y contexto
+        # Extraer opciones y contexto
         if data.get("options"):
             data.update(json.loads(urls.url_unquote_plus(data.pop("options"))))
         if data.get("context"):
@@ -99,9 +102,9 @@ class CxReportController(ReportController):
 
         request.env.context = context
 
-        # Manejo de IDs
+        # Manejo de docids
         if docids:
-            docids = [int(i) for i in docids.split(",")]
+            docids = self._parse_docids(docids)
         elif data.get("ids"):
             docids = json.loads(data["ids"])
         elif data.get("domain"):
@@ -115,21 +118,21 @@ class CxReportController(ReportController):
 
         report_file_name = self._compose_report_file_name(docids, report)
 
-        #NUEVO: procesar en lotes
+        # Procesar por lotes
         chunk_size = 100
         chunks = [docids[i:i + chunk_size] for i in range(0, len(docids), chunk_size)]
 
-        merger = PdfMerger()
+        merger = pikepdf.Pdf.new()
 
         for chunk in chunks:
             pdf_data, _ = report_obj.with_context(**context)._render_qweb_pdf(
                 reportname, chunk, data=data
             )
-            merger.append(io.BytesIO(pdf_data))
+            with pikepdf.open(io.BytesIO(pdf_data)) as pdf:
+                merger.pages.extend(pdf.pages)
 
         output = io.BytesIO()
-        merger.write(output)
-        merger.close()
+        merger.save(output)
 
         return request.make_response(
             output.getvalue(),
