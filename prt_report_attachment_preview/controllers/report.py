@@ -29,6 +29,7 @@ from odoo.http import request
 from odoo.tools.safe_eval import safe_eval, time
 from odoo.addons.web.controllers.report import ReportController
 
+#Se instala la siguiente libreria
 import pikepdf
 
 
@@ -118,7 +119,7 @@ class CxReportController(ReportController):
 
         report_file_name = self._compose_report_file_name(docids, report)
 
-        # Procesar por lotes
+        # Funcion para procesar por lotes
         chunk_size = 100
         chunks = [docids[i:i + chunk_size] for i in range(0, len(docids), chunk_size)]
 
